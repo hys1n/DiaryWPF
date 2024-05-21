@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using FontAwesome.WPF;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 
@@ -16,6 +17,9 @@ namespace DiaryWPF.View.UserControls
         }
 
         private string placeholder;
+        private string icon;
+        private FontAwesomeIcon iconParsed;
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public string Placeholder
@@ -28,15 +32,26 @@ namespace DiaryWPF.View.UserControls
             }
         }
 
-        private string icon;
-
         public string Icon
         {
             get { return icon; }
             set
             {
                 icon = value;
+                if (Enum.TryParse(icon, true, out FontAwesomeIcon result))
+                {
+                    iconParsed = result;
+                    // Notify that 'Icon' property has changed
+                    OnPropertyChanged();
+                    // Notify that 'IconParsed' property has changed for binding
+                    OnPropertyChanged(nameof(IconParsed));
+                }
             }
+        }
+
+        public FontAwesomeIcon IconParsed
+        {
+            get { return iconParsed; }
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
