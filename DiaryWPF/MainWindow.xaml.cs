@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using DiaryWPF.Forms;
+using System.Windows;
 
 namespace DiaryWPF
 {
@@ -10,6 +11,12 @@ namespace DiaryWPF
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnCalendar_Loaded(object sender, RoutedEventArgs e)
+        {
+            RegistrationForm registrationForm = new RegistrationForm();
+            registrationForm.ShowDialog();
         }
     }
 }
