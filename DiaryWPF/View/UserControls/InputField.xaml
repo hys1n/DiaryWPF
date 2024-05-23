@@ -12,6 +12,6 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" MinHeight="15" Content="{Binding FieldCaption}" FontWeight="Bold" Padding="0" HorizontalAlignment="Left"/>
-        <TextBox TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="27" Grid.Row="1" Margin="0,2,0,0"/>
+        <TextBox x:Name="textBoxInputField" Text="{Binding TextInputField, ValidatesOnDataErrors=True}" ToolTip="{Binding ErrorCollection[TextInputField]}" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="27" Grid.Row="1" Margin="0,2,0,0"/>
     </Grid>
 </UserControl>

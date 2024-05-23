@@ -21,7 +21,7 @@ namespace DiaryWPF.View.UserControls
     /// <summary>
     /// Interaction logic for InputField.xaml
     /// </summary>
-    public partial class InputField : UserControl, INotifyPropertyChanged
+    public partial class InputField : UserControl, INotifyPropertyChanged, IDataErrorInfo
     {
         public InputField()
         {
@@ -33,6 +33,36 @@ namespace DiaryWPF.View.UserControls
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        public string Error { get { return null; } }
+
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
+
+        public string this[string name]
+        {
+            get
+            {
+                string result = null;
+
+                switch (name)
+                {
+                    case "TextInputField":
+                        if (string.IsNullOrWhiteSpace(TextInputField))
+                            result = "Username cannot be empty";
+                        else if (TextInputField.Length < 3)
+                            result = "Username must be minimum of 4 characters";
+                        break;
+                }
+
+                if (ErrorCollection.ContainsKey(name))
+                    ErrorCollection[name] = result;
+                else if (result != null)
+                    ErrorCollection.Add(name, result);
+
+                OnPropertyChanged("ErrorCollection");
+                return result;
+            }
+        }
+
         public string FieldCaption
         {
             get { return fieldCaption; }
@@ -40,6 +70,15 @@ namespace DiaryWPF.View.UserControls
             {
                 fieldCaption = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public string TextInputField
+        {
+            get { return textBoxInputField.Text; }
+            set 
+            { 
+                textBoxInputField.Text = value; 
             }
         }
 
