@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace DiaryWPF.Forms
 {
@@ -22,6 +10,34 @@ namespace DiaryWPF.Forms
         public RegistrationForm()
         {
             InitializeComponent();
+        }
+
+        private bool isClicked = false;
+
+        public bool IsClicked
+        {
+            get { return isClicked; }
+            set { isClicked = value; }
+        }
+
+        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+            if (isClicked == false)
+            {
+                rfName.Content = "Log in";
+                btnCreateAccount.Content = "Sign in";
+                rfQuestion.Content = "No account yet?";
+                btnLogInText.Text = "Sign up";
+                isClicked = true;
+            }
+            else
+            {
+                rfName.Content = "Create account";
+                btnCreateAccount.Content = "Create account";
+                rfQuestion.Content = "Have an account?";
+                btnLogInText.Text = "Log in";
+                isClicked = false;
+            }
         }
     }
 }
