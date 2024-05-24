@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DiaryWPF.Models
 {
-    internal class Task
+    public class Task
     {
         public int Title { get; set; }
         public DateTime Date { get; set; }

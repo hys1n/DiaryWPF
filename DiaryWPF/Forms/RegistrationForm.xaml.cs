@@ -16,6 +16,8 @@ namespace DiaryWPF.Forms
             InitializeComponent();
         }
 
+        private readonly List<User> Users = MainWindow.users;
+
         private bool isClicked = false;
 
         private string userName;
@@ -25,6 +27,8 @@ namespace DiaryWPF.Forms
         private string password;
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        public string Error { get { return null; } }
 
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
 
@@ -52,8 +56,6 @@ namespace DiaryWPF.Forms
             set { password = value; }
         }
 
-        public string Error { get { return null; } }
-
         public string this[string columnName]
         {
             get
@@ -65,7 +67,7 @@ namespace DiaryWPF.Forms
                     case nameof(UserName):
                         if (string.IsNullOrWhiteSpace(UserName))
                             result = "Username cannot be empty";
-                        else if (UserName.Length < 2)
+                        else if (UserName.Length < 3)
                             result = "Username must be a minimum of 3 characters";
                         break;
                     case nameof(Email):
@@ -77,7 +79,7 @@ namespace DiaryWPF.Forms
                     case nameof(Password):
                         if (string.IsNullOrWhiteSpace(Password))
                             result = "Password cannot be empty.";
-                        else if (Password.Length < 2)
+                        else if (Password.Length < 3)
                             result = "Password must be a minimum of 3 characters";
                         break;
                 }
@@ -110,29 +112,76 @@ namespace DiaryWPF.Forms
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void btnLogIn_Click(object sender, RoutedEventArgs e)
-        {
-            //if (isClicked == false)
-            //{
-            //    rfName.Content = "Log in";
-            //    btnCreateAccount.Content = "Sign in";
-            //    rfQuestion.Content = "No account yet?";
-            //    btnLogInText.Text = "Sign up";
-            //    isClicked = true;
-            //}
-            //else
-            //{
-            //    rfName.Content = "Create account";
-            //    btnCreateAccount.Content = "Create account";
-            //    rfQuestion.Content = "Have an account?";
-            //    btnLogInText.Text = "Log in";
-            //    isClicked = false;
-            //}
-        }
-
         public void btnCreateAccount_Click(object sender, RoutedEventArgs e)
         {
+            bool isRegistered = RegisterUser();
 
+            if (isRegistered)
+            {
+                DialogResult = true;
+                Close();
+            }
+        }
+
+        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+            bool isLoggedIn = LogInUser();
+
+            if (isLoggedIn)
+            {
+                DialogResult = true;
+                Close();
+            }
+        }
+
+        private bool RegisterUser()
+        {
+            if (ErrorCollection.Count > 0 && ErrorCollection.Any(e => e.Value != null))
+            {
+                MessageBox.Show("Not all input fields are filled or input text is invalid", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (Users.Any(u => u.UserName == UserName || u.Email == Email))
+            {
+                MessageBox.Show("User with the same username or email already exists", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            User newUser = new User
+            {
+                UserName = UserName,
+                Email = Email,
+                Password = Password
+            };
+
+            Users.Add(newUser);
+
+            MessageBox.Show("User registered successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+            return true; 
+        }
+
+        private bool LogInUser()
+        {
+            if (Users.Count <= 0)
+            {
+                MessageBox.Show("The user doesn't exist", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (Users.Count > 0)
+            {
+                foreach (User user in Users)
+                {
+                    if (user.Email == Email && user.UserName == UserName && user.Password == Password)
+                    {
+                        MessageBox.Show("You've logged in successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return true;
+                    }
+                }
+            }
+
+            MessageBox.Show("The user doesn't exist", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            return false; 
         }
     }
 }

@@ -9,18 +9,25 @@ namespace DiaryWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<User> users;
+        public static List<User> users;
 
         public MainWindow()
         {
             InitializeComponent();
             users = new List<User>();
+
+            var loginWindow = new RegistrationForm();
+            bool? dialogResult = loginWindow.ShowDialog();
+
+            if (dialogResult != true)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void btnCalendar_Loaded(object sender, RoutedEventArgs e)
         {
-            RegistrationForm registrationForm = new RegistrationForm();
-            registrationForm.ShowDialog();
+            
         }
     }
 }

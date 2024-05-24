@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DiaryWPF.Forms"
         xmlns:UserControls="clr-namespace:DiaryWPF.View.UserControls"
         mc:Ignorable="d"
-        Title="RegistrationForm" Height="357" Width="300" ResizeMode="NoResize">
+        Title="RegistrationForm" Height="357" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
