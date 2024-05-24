@@ -1,6 +1,7 @@
 ﻿using DiaryWPF.Models;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace DiaryWPF.Forms
@@ -69,6 +70,8 @@ namespace DiaryWPF.Forms
                             result = "Username cannot be empty";
                         else if (UserName.Length < 3)
                             result = "Username must be a minimum of 3 characters";
+                        else if (UserName.Length > 32)
+                            result = "Username must be a maximum of 32 characters";
                         break;
                     case nameof(Email):
                         if (string.IsNullOrWhiteSpace(Email))
@@ -79,8 +82,10 @@ namespace DiaryWPF.Forms
                     case nameof(Password):
                         if (string.IsNullOrWhiteSpace(Password))
                             result = "Password cannot be empty.";
-                        else if (Password.Length < 3)
-                            result = "Password must be a minimum of 3 characters";
+                        else if (Password.Length < 4)
+                            result = "Password must be a minimum of 4 characters";
+                        else if (Password.Length > 64)
+                            result = "Password must be a maximum of 64 characters";
                         break;
                 }
 
@@ -96,15 +101,11 @@ namespace DiaryWPF.Forms
 
         private bool IsValidEmail(string email)
         {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
+            if (string.IsNullOrWhiteSpace(email))
                 return false;
-            }
+
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, pattern);
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiaryWPF"
+        xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         xmlns:UserControls="clr-namespace:DiaryWPF.View.UserControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="436" Width="810" MinWidth="800" MinHeight="450" WindowStartupLocation="CenterScreen">
@@ -25,6 +26,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Column="0" Fill="#efeded"/>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="10,16,0,0">
+            <fa:ImageAwesome x:Name="fontIcon" Icon="ArrowCircleLeft" Height="26" Width="31"/>
+        </StackPanel>
+        <Button x:Name="btnLogOut" Content="Log out" Width="77" Height="37" VerticalAlignment="Top" Margin="42,11,42,0" Click="btnLogOut_Click"/>
         <Grid VerticalAlignment="Top"  Margin="20,52,0,0" HorizontalAlignment="Left" Height="Auto" Width="140">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
