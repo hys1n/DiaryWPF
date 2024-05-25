@@ -30,14 +30,20 @@
             <fa:ImageAwesome x:Name="fontIcon" Icon="ArrowCircleLeft" Height="26" Width="31"/>
         </StackPanel>
         <Button x:Name="btnLogOut" Content="Log out" Width="77" Height="37" VerticalAlignment="Top" Margin="42,11,42,0" Click="btnLogOut_Click"/>
-        <Grid VerticalAlignment="Top"  Margin="20,52,0,0" HorizontalAlignment="Left" Height="Auto" Width="140">
+        <Grid VerticalAlignment="Top"  Margin="21,53,0,0" HorizontalAlignment="Left" Height="Auto" Width="140">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <UserControls:IconButton x:Name="btnAddTask" Icon="Plus" Placeholder="Add task" Margin="0, 10, 0, 5" VerticalAlignment="Center" HorizontalAlignment="Center" Height="37" Width="120"/>
+            <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="17,0,0,0">
+                <fa:ImageAwesome x:Name="Plus" Icon="Plus" Height="26" Width="31"/>
+            </StackPanel>
+            <Button  x:Name="btnAddTask" Content="Add task" Width="77" Height="36"  Margin="53,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnAddTask_Click"/>
+
+            
+            <!--<UserControls:IconButton  Margin="0, 10, 0, 5" VerticalAlignment="Center" HorizontalAlignment="Center" Height="37" Width="120"/>-->
             <UserControls:IconButton x:Name="btnInbox" Icon="Inbox" Placeholder="Inbox" Margin="0, 10, 0, 5" Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="37" Width="120"/>
             <UserControls:IconButton x:Name="btnMyLists" Icon="Check" Placeholder="My lists" Margin="0, 5, 0, 5"  Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="37" Width="120"/>
             <UserControls:IconButton x:Name="btnCalendar" Icon="Calendar" Placeholder="Calendar" Margin="0, 5, 0, 5"  Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="37" Width="120" Loaded="btnCalendar_Loaded"/>

@@ -16,13 +16,13 @@ namespace DiaryWPF
             InitializeComponent();
             users = new List<User>();
 
-            var loginWindow = new RegistrationForm();
-            bool? dialogResult = loginWindow.ShowDialog();
+            //var loginWindow = new RegistrationForm();
+            //bool? dialogResult = loginWindow.ShowDialog();
 
-            if (dialogResult != true)
-            {
-                Application.Current.Shutdown();
-            }
+            //if (dialogResult != true)
+            //{
+            //    Application.Current.Shutdown();
+            //}
         }
 
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
@@ -55,6 +55,12 @@ namespace DiaryWPF
         private void btnCalendar_Loaded(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void btnAddTask_Click(object sender, RoutedEventArgs e)
+        {
+            AddTaskForm atForm = new AddTaskForm();
+            atForm.ShowDialog();
         }
     }
 }

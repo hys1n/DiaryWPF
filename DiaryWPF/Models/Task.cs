@@ -8,12 +8,12 @@ namespace DiaryWPF.Models
 {
     public class Task
     {
-        public int Title { get; set; }
+        public string Title { get; set; }
         public DateTime Date { get; set; }
         public string Description { get; set; }
 
         public Task() { }
-        public Task(int title, DateTime date, string description)
+        public Task(string title, DateTime date, string description)
         {
             Title = title;
             Date = date;

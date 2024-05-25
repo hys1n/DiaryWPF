@@ -14,11 +14,6 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Name="rfName" Grid.Row="0" Content="Create account" FontWeight="Bold" FontSize="28" Padding="0" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top"/>
-            <!--<StackPanel Height="160" Margin="0,62,0,171" Grid.RowSpan="2">
-                <UserControls:InputField x:Name="userNameInputField" FieldCaption="User name"/>
-                <UserControls:InputField x:Name="emailInputField" Margin="0, 10, 0, 0"  FieldCaption="Email"/>
-                <UserControls:InputField x:Name="passwordInputField" Margin="0, 10, 0, 0" FieldCaption="Password"/>
-            </StackPanel>-->
 
             <Label Grid.Row="1" Height="15" Content="User name" FontWeight="Bold" Padding="0" HorizontalAlignment="Left" Margin="25,8,0,308"/>
             <TextBox Text="{Binding UserName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[UserName]}" Grid.Row="1" x:Name="textBoxUserName" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="27" Margin="25,26,25,0"/>
