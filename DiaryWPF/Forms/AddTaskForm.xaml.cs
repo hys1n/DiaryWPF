@@ -74,7 +74,7 @@ namespace DiaryWPF.Forms
             set { taskDescription = value; }
         }
 
-        private void textBoxLocation_TextChanged(object sender, TextChangedEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
 
         }
