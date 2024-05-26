@@ -19,8 +19,6 @@ namespace DiaryWPF.Forms
 
         private readonly List<User> Users = MainWindow.users;
 
-        private bool isClicked = false;
-
         private string userName;
 
         private string email;
@@ -32,12 +30,6 @@ namespace DiaryWPF.Forms
         public string Error { get { return null; } }
 
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
-
-        public bool IsClicked
-        {
-            get { return isClicked; }
-            set { isClicked = value; }
-        }
 
         public string UserName
         {
