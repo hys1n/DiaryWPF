@@ -57,6 +57,7 @@ namespace DiaryWPF.Forms
             set { password = value; }
         }
 
+        // Indexer which validates input fields
         public string this[string columnName]
         {
             get

@@ -17,7 +17,9 @@ namespace DiaryWPF.View.UserControls
         }
 
         private string placeholder;
+
         private string icon;
+
         private FontAwesomeIcon iconParsed;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -54,6 +56,7 @@ namespace DiaryWPF.View.UserControls
             get { return iconParsed; }
         }
 
+        // Invokes the PropertyChanged event to notify subscribers that a property value has changed.
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
