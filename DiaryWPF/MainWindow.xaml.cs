@@ -11,18 +11,20 @@ namespace DiaryWPF
     {
         public static List<User> users;
 
+        public static User currentUser;
+
         public MainWindow()
         {
             InitializeComponent();
             users = new List<User>();
 
-            //var loginWindow = new RegistrationForm();
-            //bool? dialogResult = loginWindow.ShowDialog();
+            var loginWindow = new RegistrationForm();
+            bool? dialogResult = loginWindow.ShowDialog();
 
-            //if (dialogResult != true)
-            //{
-            //    Application.Current.Shutdown();
-            //}
+            if (dialogResult != true)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void btnLogOut_Click(object sender, RoutedEventArgs e)

@@ -17,7 +17,7 @@ namespace DiaryWPF.Forms
             InitializeComponent();
         }
 
-        private readonly List<User> Users = MainWindow.users;
+        private readonly List<User> users = MainWindow.users;
 
         private string userName;
 
@@ -34,13 +34,13 @@ namespace DiaryWPF.Forms
         public string UserName
         {
             get { return userName; }
-            set { userName = value; }
+            set { userName = value.Trim(); }
         }
 
         public string Email
         {
             get { return email; }
-            set { email = value; }
+            set { email = value.Trim(); }
         }
 
         public string Password
@@ -68,13 +68,13 @@ namespace DiaryWPF.Forms
                         break;
                     case nameof(Email):
                         if (string.IsNullOrWhiteSpace(Email))
-                            result = "Email cannot be empty.";
+                            result = "Email cannot be empty";
                         else if (!IsValidEmail(Email))
-                            result = "Email is not valid.";
+                            result = "Email is not valid";
                         break;
                     case nameof(Password):
                         if (string.IsNullOrWhiteSpace(Password))
-                            result = "Password cannot be empty.";
+                            result = "Password cannot be empty";
                         else if (Password.Length < 4)
                             result = "Password must be a minimum of 4 characters";
                         else if (Password.Length > 64)
@@ -136,7 +136,7 @@ namespace DiaryWPF.Forms
                 return false;
             }
 
-            if (Users.Any(u => u.UserName == UserName || u.Email == Email))
+            if (users.Any(u => u.UserName == UserName || u.Email == Email))
             {
                 MessageBox.Show("User with the same username or email already exists", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -146,10 +146,13 @@ namespace DiaryWPF.Forms
             {
                 UserName = UserName,
                 Email = Email,
-                Password = Password
+                Password = Password,
+                Tasks = new List<Models.Task>()
             };
 
-            Users.Add(newUser);
+
+            users.Add(newUser);
+            MainWindow.currentUser = newUser;
 
             MessageBox.Show("User registered successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
             return true; 
@@ -157,17 +160,18 @@ namespace DiaryWPF.Forms
 
         private bool LogInUser()
         {
-            if (Users.Count <= 0)
+            if (users.Count <= 0)
             {
                 MessageBox.Show("The user doesn't exist", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            else if (Users.Count > 0)
+            else if (users.Count > 0)
             {
-                foreach (User user in Users)
+                foreach (User user in users)
                 {
                     if (user.Email == Email && user.UserName == UserName && user.Password == Password)
                     {
+                        MainWindow.currentUser = user;
                         MessageBox.Show("You've logged in successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         return true;
                     }

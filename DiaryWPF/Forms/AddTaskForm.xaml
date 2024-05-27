@@ -146,24 +146,24 @@
             </Grid.RowDefinitions>
 
             <Label x:Name="rfName" Content="Task" FontWeight="Bold" FontSize="32" Padding="0" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" Grid.Row="0"/>
-            <TextBox Style="{DynamicResource TextBoxPlaceholderStyle}" Text="{Binding TaskTitle}" Padding="5, 0, 0, 0" FontSize="14" x:Name="titleTextBox" VerticalContentAlignment="Center" Width="328" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,10,0,0" Grid.Row="1"/>
+            <TextBox Style="{DynamicResource TextBoxPlaceholderStyle}" Text="{Binding TaskTitle, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[TaskTitle]}" Padding="5, 0, 0, 0" FontSize="14" x:Name="titleTextBox" VerticalContentAlignment="Center" Width="328" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,10,0,0" Grid.Row="1"/>
 
             <Label Content="Date:" FontSize="16" Padding="0" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Grid.Row="2"/>
             <DatePicker HorizontalAlignment="Left" Margin="95,10,0,0" SelectedDate="{Binding TaskDateTime}" VerticalAlignment="Top" Grid.Row="2" Grid.RowSpan="2"/>
 
             <Label Content="Time:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Margin="25,10,0,0"/>
-            <xctk:DateTimePicker x:Name="timePicker" Format="Custom" DisplayDefaultValueOnEmptyText="True"  FormatString="HH:mm" TimePickerVisibility="Visible" DefaultValue="09:00:00" Value="{Binding TaskTime}" ShowDropDownButton="False" Width="100" HorizontalAlignment="Left" Height="20"  Grid.Row="3" Margin="95,10,0,1"/>
+            <xctk:DateTimePicker x:Name="timePicker" Format="Custom" FormatString="HH:mm" TimePickerVisibility="Visible" Value="{Binding TaskTime}" ShowDropDownButton="False" Width="100" HorizontalAlignment="Left" Height="20"  Grid.Row="3" Margin="95,10,0,1"/>
 
 
             <Label Content="Duration:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="25,10,0,0"/>
             <xctk:TimeSpanUpDown DefaultValue="00:30:00" ClipValueToMinMax="True" Value="{Binding TaskDuration}" Width="102" Height="20"  HorizontalAlignment="Left" Grid.Row="4"  Minimum="00:00:00" AllowSpin="True" Margin="95,10,0,1"/>
 
             <Label Content="Location:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Margin="25,10,0,0"/>
-            <TextBox Name="textBoxLocation" Text="{Binding TaskLocation}" Grid.Row="5" Width="163" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="95,11,0,1"/>
+            <TextBox Name="textBoxLocation" Text="{Binding TaskLocation, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[TaskLocation]}" Grid.Row="5" Width="163" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="95,11,0,1"/>
             <TextBox Style="{DynamicResource TextBoxDescriptionPlaceholder}" Text="{Binding TaskDescription}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Padding="5, 5, 0, 0" FontSize="14" x:Name="descriptionTextBox" VerticalContentAlignment="Top" Width="328" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,10,0,0" Grid.Row="6"/>
 
             <Button x:Name="btnAdd" FontSize="14" Content="Add" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="7" Margin="0,0,76,10" Height="27" Width="47" Click="btnAdd_Click"/>
-            <Button x:Name="btnCancel" FontSize="14" Content="Cancel" Padding="3,0,3,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="7" Margin="0,0,10,10" Height="27" Width="54"/>
+            <Button x:Name="btnCancel" FontSize="14" Content="Cancel" Padding="3,0,3,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="7" Margin="0,0,10,10" Height="27" Width="54" Click="btnCancel_Click"/>
         </Grid>
     </Grid>
 </Window>
