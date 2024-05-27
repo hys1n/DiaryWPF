@@ -30,8 +30,6 @@ namespace DiaryWPF.Forms
             InitializeComponent();
         }
 
-        private readonly List<User> users = MainWindow.users;
-
         private string taskTitle;
 
         private DateTime taskDateTime = DateTime.Now;
@@ -43,6 +41,8 @@ namespace DiaryWPF.Forms
         private string taskLocation;
 
         private string taskDescription;
+
+        private bool isProgrammaticClose = false;
 
         public string Error { get { return null; } }
 
@@ -173,13 +173,16 @@ namespace DiaryWPF.Forms
                     Time = TaskTime,
                     Duration = TaskDuration,
                     Location = TaskLocation,
-                    Description = TaskDescription
+                    Description = TaskDescription,
+                    IsCompleted = false
                 };
 
                 MainWindow.currentUser.Tasks.Add(newTask);
                 MessageBox.Show("Task added successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                SetDefaultInputFields();
+                //SetDefaultInputFields();
+                isProgrammaticClose = true;
+                Close();
             }
         }
 
@@ -198,7 +201,28 @@ namespace DiaryWPF.Forms
             );
 
             if (result == MessageBoxResult.Yes)
-                Hide();
+            {
+                isProgrammaticClose = true;
+                Close();
+            }
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if (!isProgrammaticClose)
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    "Are you sure you want to exit?",
+                    "Confirmation",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                );
+
+                if (result == MessageBoxResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

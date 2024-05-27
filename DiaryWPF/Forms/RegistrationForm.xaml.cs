@@ -1,4 +1,5 @@
 ﻿using DiaryWPF.Models;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -147,7 +148,7 @@ namespace DiaryWPF.Forms
                 UserName = UserName,
                 Email = Email,
                 Password = Password,
-                Tasks = new List<Models.Task>()
+                Tasks = new ObservableCollection<Models.Task>()
             };
 
 
