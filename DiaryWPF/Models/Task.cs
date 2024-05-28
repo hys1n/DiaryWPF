@@ -20,8 +20,10 @@ namespace DiaryWPF.Models
 
         public string Description { get; set; }
 
+        public bool IsCompleted { get; set; }
+
         public Task() { }
-        public Task(string title, DateTime date, DateTime time, TimeSpan duration, string location, string description)
+        public Task(string title, DateTime date, DateTime time, TimeSpan duration, string location, string description, bool isCompleted)
         {
             Title = title;
             Date = date;
@@ -29,6 +31,7 @@ namespace DiaryWPF.Models
             Duration = duration;
             Location = location;
             Description = description;
+            IsCompleted = isCompleted;
         }
     }
 }

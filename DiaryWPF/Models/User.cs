@@ -1,4 +1,6 @@
-﻿namespace DiaryWPF.Models
+﻿using System.Collections.ObjectModel;
+
+namespace DiaryWPF.Models
 {
     public class User
     {
@@ -6,16 +8,17 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public int Id { get; set; }
-        public List<Task> Tasks { get; set; }
+        public ObservableCollection<Task> Tasks { get; set; }
 
         public User() { }
 
-        public User(int id, string userName, string email, string password)
+        public User(int id, string userName, string email, string password, ObservableCollection<Task> tasks)
         {
             Id = id;
             UserName = userName;
             Email = email;
             Password = password;
+            Tasks = tasks;
         }
     }
 }
