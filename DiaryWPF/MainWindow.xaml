@@ -19,6 +19,16 @@
             <Setter Property="BorderThickness" Value="1, 1, 0, 1"/>
             <Setter Property="Grid.Row" Value="0"/>
         </Style>
+        <DataTemplate x:Key="DayBlockTemplate">
+            <Border Style="{StaticResource GridCellBorderStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Date, StringFormat='{}{0:ddd, dd.MM}'}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -58,9 +68,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock FontSize="18" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        May 2024
-                </TextBlock>
+                <TextBlock FontSize="18" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding Days[0].Date, StringFormat='MMMM yyyy'}"/>
                 <DatePicker Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             </Grid>
             <Grid Grid.Row="1">
@@ -121,13 +129,14 @@
                 <Border Grid.Column="5" Style="{StaticResource GridCellBorderStyle}"/>
                 <Border Grid.Column="6" Style="{StaticResource GridCellBorderStyle}" BorderThickness="1, 0, 1, 1"/>
 
-                <UserControls:DayBlock Grid.Row="0" Grid.Column="0"/>
-                <UserControls:DayBlock Grid.Row="0" Grid.Column="1"/>
-                <UserControls:DayBlock Grid.Row="0" Grid.Column="2"/>
-                <UserControls:DayBlock Grid.Row="0" Grid.Column="3"/>
-                <UserControls:DayBlock Grid.Row="0" Grid.Column="4"/>
-                <UserControls:DayBlock Grid.Row="0" Grid.Column="5"/>
-                <UserControls:DayBlock Grid.Row="0" Grid.Column="6"/>
+
+                <ContentControl Grid.Column="0" Content="{Binding Days[0]}" ContentTemplate="{StaticResource DayBlockTemplate}" />
+                <ContentControl Grid.Column="1" Content="{Binding Days[1]}" ContentTemplate="{StaticResource DayBlockTemplate}" />
+                <ContentControl Grid.Column="2" Content="{Binding Days[2]}" ContentTemplate="{StaticResource DayBlockTemplate}" />
+                <ContentControl Grid.Column="3" Content="{Binding Days[3]}" ContentTemplate="{StaticResource DayBlockTemplate}" />
+                <ContentControl Grid.Column="4" Content="{Binding Days[4]}" ContentTemplate="{StaticResource DayBlockTemplate}" />
+                <ContentControl Grid.Column="5" Content="{Binding Days[5]}" ContentTemplate="{StaticResource DayBlockTemplate}" />
+                <ContentControl Grid.Column="6" Content="{Binding Days[6]}" ContentTemplate="{StaticResource DayBlockTemplate}" />
             </Grid>
         </Grid>
     </Grid>

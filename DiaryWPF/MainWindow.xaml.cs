@@ -17,6 +17,9 @@ namespace DiaryWPF
         public static User currentUser;
 
         private static ObservableCollection<Models.Task> tasks;
+
+        public ObservableCollection<Day> Days { get; set; }
+
         public static ObservableCollection<Models.Task> Tasks
         {
             get
@@ -39,6 +42,7 @@ namespace DiaryWPF
             users = new List<User>();
 
             DataContext = this;
+            LoadDays();
 
             //var loginWindow = new RegistrationForm();
             //bool? dialogResult = loginWindow.ShowDialog();
@@ -65,6 +69,16 @@ namespace DiaryWPF
             }
             User dummyUser = new User(0, "User", "email@gmail.com", "1234", dummyTasks);
             currentUser = dummyUser;
+        }
+
+        private void LoadDays()
+        {
+            Days = new ObservableCollection<Day>();
+            DateTime firstWeekDay = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+            for (int i = 0; i < 7; i++)
+            {
+                Days.Add(new Day { Date = firstWeekDay.AddDays(i) });
+            }
         }
 
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
