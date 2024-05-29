@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DiaryWPF.Forms
 {
@@ -19,14 +10,111 @@ namespace DiaryWPF.Forms
     /// </summary>
     public partial class EditTaskForm : Window
     {
+        public Models.Task OriginalTask { get; set; }
+
+        public Models.Task Task { get; set; }
+
+        private bool isProgrammaticClose = false;
+
         public EditTaskForm(Models.Task task)
         {
             InitializeComponent();
+            OriginalTask = task.Clone();
+            Task = task;
+            DataContext = task;
+
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+                MessageBoxResult result = MessageBox.Show(
+                                    "Are you sure you want to edit?",
+                                    "Confirmation",
+                                    MessageBoxButton.YesNo,
+                                    MessageBoxImage.Question
+                            );
+                if (result == MessageBoxResult.Yes)
+                {
+                    isProgrammaticClose = true;
+                    Close();
+                }
+        }
 
+        private void RestoreTask()
+        {
+            Task.Date = OriginalTask.Date;
+            Task.Title = OriginalTask.Title;
+            Task.IsCompleted = OriginalTask.IsCompleted;
+            Task.Time = OriginalTask.Time;
+            Task.Duration = OriginalTask.Duration;
+            Task.Description = OriginalTask.Description;
+            Task.Location = OriginalTask.Location;
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {            MessageBoxResult result = MessageBox.Show(
+                    "Are you sure you want to undo the changes?",
+                    "Confirmation",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+            );
+            if (result == MessageBoxResult.Yes)
+            {
+                RestoreTask();
+                isProgrammaticClose = true;
+                Close();
+            }
+        }
+
+        private void btnDeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(
+                     "Are you sure you want to delete the task?",
+                     "Confirmation",
+                     MessageBoxButton.YesNo,
+                     MessageBoxImage.Question
+             );
+            if (result == MessageBoxResult.Yes)
+            {
+                Models.Task taskToDelete = DataContext as Models.Task;
+
+                if (taskToDelete != null)
+                {
+                    MainWindow.Tasks.Remove(taskToDelete);
+                }
+
+                isProgrammaticClose = true;
+                Close();
+
+                MessageBox.Show(
+                     "The task successfully deleted!",
+                     "Success!",
+                     MessageBoxButton.OK,
+                     MessageBoxImage.Information
+                );
+            }
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if (!isProgrammaticClose)
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    "Are you sure you want to undo the changes?",
+                    "Confirmation",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                );
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    RestoreTask();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

@@ -16,8 +16,8 @@ namespace DiaryWPF
 
         public static User currentUser;
 
-        private ObservableCollection<Models.Task> tasks;
-        public ObservableCollection<Models.Task> Tasks
+        private static ObservableCollection<Models.Task> tasks;
+        public static ObservableCollection<Models.Task> Tasks
         {
             get
             {
@@ -104,32 +104,6 @@ namespace DiaryWPF
         {
             AddTaskForm atForm = new AddTaskForm();
             atForm.ShowDialog();
-        }
-
-        private void lbCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            CheckBox checkBox = sender as CheckBox;
-            if (checkBox != null)
-            {
-                Models.Task task = checkBox.DataContext as Models.Task;
-                if (task != null)
-                {
-                    task.IsCompleted = true;
-                }
-            }
-        }
-
-        private void lbCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            CheckBox checkBox = sender as CheckBox;
-            if (checkBox != null)
-            {
-                Models.Task task = checkBox.DataContext as Models.Task;
-                if (task != null)
-                {
-                    task.IsCompleted = false;
-                }
-            }
         }
 
         private void ListBoxItem_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)

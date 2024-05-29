@@ -71,7 +71,7 @@ namespace DiaryWPF.Forms
                         if (string.IsNullOrWhiteSpace(Email))
                             result = "Email cannot be empty";
                         else if (!IsValidEmail(Email))
-                            result = "Email is not valid";
+                            result = "Email is not valid. Email format: 'email_name@gmail.com'";
                         break;
                     case nameof(Password):
                         if (string.IsNullOrWhiteSpace(Password))

@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:DiaryWPF.Forms"
         mc:Ignorable="d"
-        Title="EditTaskForm" Height="Auto" Width="Auto" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+        Title="EditTaskForm" Height="Auto" Width="Auto" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize" Closing="Window_Closing">
     <Window.Resources>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
@@ -129,6 +129,25 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
+
+        <!--Textbox styling-->
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border BorderThickness="0,0,0,1" BorderBrush="Black">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsChecked, ElementName=taskCompletedCheckBox}" Value="True">
+                    <Setter Property="TextDecorations" Value="Strikethrough"/>
+                    <Setter Property="Foreground" Value="LightGray"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Grid Height="367" Width="384">
         <Grid.RowDefinitions>
@@ -140,38 +159,25 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <DatePicker Grid.Row="0" HorizontalAlignment="Left" Margin="25,20,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnDeleteTask" Content="Delete" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,22,25,0"/>
+        <DatePicker SelectedDate="{Binding Date, Mode=TwoWay}" Grid.Row="0" HorizontalAlignment="Left" Margin="25,20,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnDeleteTask" Content="Delete" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,22,25,0" Click="btnDeleteTask_Click"/>
 
 
-        <TextBox Grid.Row="1" Width="275" Height="25" VerticalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="35,42,0,0">
-            <TextBox.Style>
-                <Style TargetType="TextBox">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="TextBox">
-                                <Border BorderThickness="0,0,0,1" BorderBrush="Black">
-                                    <ScrollViewer x:Name="PART_ContentHost" />
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </TextBox.Style>
+        <TextBox x:Name="TextBoxTitle" Style="{StaticResource TextBoxStyle}" Text="{Binding Title, Mode=TwoWay}"  Grid.Row="1" Width="275" Height="25" VerticalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="35,42,0,0">
         </TextBox>
-        <CheckBox Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Checked="CheckBox_Checked" Margin="0,47,48,0"/>
+        <CheckBox x:Name="taskCompletedCheckBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" IsChecked="{Binding IsCompleted, Mode=TwoWay}" Margin="0,47,48,0"/>
 
         <Label Content="Time:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Margin="35,17,0,0"/>
-        <xctk:DateTimePicker x:Name="timePicker" Format="Custom" FormatString="HH:mm" TimePickerVisibility="Visible" Value="{Binding TaskTime}" ShowDropDownButton="False" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20"  Grid.Row="2" Margin="104,19,0,0" />
+        <xctk:DateTimePicker x:Name="timePicker" Format="Custom" FormatString="HH:mm" TimePickerVisibility="Visible" Value="{Binding Time, Mode=TwoWay}" ShowDropDownButton="False" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20"  Grid.Row="2" Margin="104,19,0,0" />
 
         <Label Content="Duration:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Margin="35,10,0,0"/>
-        <xctk:TimeSpanUpDown DefaultValue="00:30:00" ClipValueToMinMax="True" Value="{Binding TaskDuration}" Width="102" Height="20" VerticalAlignment="Top"  HorizontalAlignment="Left" Grid.Row="3"  Minimum="00:00:00" AllowSpin="True" Margin="104,10,0,0"/>
+        <xctk:TimeSpanUpDown DefaultValue="00:30:00" ClipValueToMinMax="True" Value="{Binding Duration, Mode=TwoWay}" Width="102" Height="20" VerticalAlignment="Top"  HorizontalAlignment="Left" Grid.Row="3"  Minimum="00:00:00" AllowSpin="True" Margin="104,10,0,0"/>
 
-        <Label Content="Location:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="35,7,0,0"/>
-        <TextBox Name="textBoxLocation" Text="{Binding TaskLocation, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" ToolTip="{Binding ErrorCollection[TaskLocation]}" Grid.Row="4" Width="163" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="104,8,0,0"/>
-        <TextBox Style="{DynamicResource TextBoxDescriptionPlaceholder}" Text="{Binding TaskDescription, Mode=OneWayToSource}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Padding="5, 5, 0, 0" FontSize="14" x:Name="descriptionTextBox" VerticalContentAlignment="Top" Width="308" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,10,0,0" Grid.Row="5"/>
+        <Label Name="TextBoxLocation" Content="Location:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="35,7,0,0"/>
+        <TextBox Name="textBoxLocation" Text="{Binding Location, Mode=TwoWay}"  Grid.Row="4" Width="163" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="104,8,0,0"/>
+        <TextBox Style="{DynamicResource TextBoxDescriptionPlaceholder}" Text="{Binding Description, Mode=TwoWay}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Padding="5, 5, 0, 0" FontSize="14" x:Name="descriptionTextBox" VerticalContentAlignment="Top" Width="308" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,10,0,0" Grid.Row="5"/>
 
-        <Button x:Name="btnEdit" FontSize="14" Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="6" Margin="0,0,84,17" Height="27" Width="47"/>
-        <Button x:Name="btnCancel" FontSize="14" Content="Cancel" Padding="3,0,3,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="6" Margin="0,0,18,17" Height="27" Width="54"/>
+        <Button x:Name="btnEdit" FontSize="14" Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="6" Margin="0,0,84,17" Height="27" Width="47" Click="btnEdit_Click"/>
+        <Button x:Name="btnCancel" FontSize="14" Content="Cancel" Padding="3,0,3,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="6" Margin="0,0,18,17" Height="27" Width="54" Click="btnCancel_Click"/>
     </Grid>
 </Window>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DiaryWPF.Models
+﻿namespace DiaryWPF.Models
 {
     public class Task
     {
@@ -32,6 +26,21 @@ namespace DiaryWPF.Models
             Location = location;
             Description = description;
             IsCompleted = isCompleted;
+        }
+
+        // Utility method for cloning an object
+        public Task Clone()
+        {
+            return new Task
+            {
+                Title = Title,
+                Date = Date,
+                Time = Time,
+                Duration = Duration,
+                Location = Location,
+                Description = Description,
+                IsCompleted = IsCompleted,
+            };
         }
     }
 }

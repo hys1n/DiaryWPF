@@ -137,26 +137,26 @@ namespace DiaryWPF.Forms
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void SetDefaultInputFields()
-        {
-            TaskTitle = "";
-            OnPropertyChanged(nameof(TaskTitle));
+        //private void SetDefaultInputFields()
+        //{
+        //    TaskTitle = "";
+        //    OnPropertyChanged(nameof(TaskTitle));
 
-            TaskLocation = "";
-            OnPropertyChanged(nameof(TaskLocation));
+        //    TaskLocation = "";
+        //    OnPropertyChanged(nameof(TaskLocation));
 
-            TaskDescription = "";
-            OnPropertyChanged(nameof(TaskDescription));
+        //    TaskDescription = "";
+        //    OnPropertyChanged(nameof(TaskDescription));
 
-            TaskDateTime = DateTime.Now;
-            OnPropertyChanged(nameof(TaskDateTime));
+        //    TaskDateTime = DateTime.Now;
+        //    OnPropertyChanged(nameof(TaskDateTime));
 
-            TaskTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 9, 0, 0);
-            OnPropertyChanged(nameof(TaskTime));
+        //    TaskTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 9, 0, 0);
+        //    OnPropertyChanged(nameof(TaskTime));
 
-            TaskDuration = TimeSpan.FromMinutes(30);
-            OnPropertyChanged(nameof(TaskDuration));
-        }
+        //    TaskDuration = TimeSpan.FromMinutes(30);
+        //    OnPropertyChanged(nameof(TaskDuration));
+        //}
 
         private void AddTask()
         {
@@ -178,11 +178,12 @@ namespace DiaryWPF.Forms
                 };
 
                 MainWindow.currentUser.Tasks.Add(newTask);
-                MessageBox.Show("Task added successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                
                 //SetDefaultInputFields();
                 isProgrammaticClose = true;
                 Close();
+
+                MessageBox.Show("Task added successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
