@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using DiaryWPF.Models;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -22,7 +23,6 @@ namespace DiaryWPF.Forms
             OriginalTask = task.Clone();
             Task = task;
             DataContext = task;
-
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -36,6 +36,7 @@ namespace DiaryWPF.Forms
                 if (result == MessageBoxResult.Yes)
                 {
                     isProgrammaticClose = true;
+                    DayLoader.LoadDays();
                     Close();
                 }
         }
@@ -85,6 +86,7 @@ namespace DiaryWPF.Forms
 
                 isProgrammaticClose = true;
                 Close();
+                DayLoader.LoadDays();
 
                 MessageBox.Show(
                      "The task successfully deleted!",

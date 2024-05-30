@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Linq;
 
 namespace DiaryWPF
 {
@@ -21,18 +22,7 @@ namespace DiaryWPF
         private static ObservableCollection<Models.Task> tasks;
 
         private ObservableCollection<Day> days;
-        public ObservableCollection<Day> Days { 
-            get { return days; } 
-            set
-            {
-                if (days != value)
-                {
-                    days = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
+        
         private DateTime chosenDate = DateTime.Now;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -43,7 +33,7 @@ namespace DiaryWPF
             users = new List<User>();
 
             DataContext = this;
-            LoadDays();
+            
 
             //var loginWindow = new RegistrationForm();
             //bool? dialogResult = loginWindow.ShowDialog();
@@ -58,8 +48,8 @@ namespace DiaryWPF
             {
                 Models.Task task = new Models.Task(
                     "Meeting with John",
-                    new DateTime(2024, 6, 1),
-                    new DateTime(2024, 6, 1, 14, 0, 0),
+                    new DateTime(2024, 5, 26+i),
+                    new DateTime(2024, 5, 26+i, 14, 0, 0),
                     new TimeSpan(1, 0, 0),
                     "Office",
                     "Discuss quarterly results",
@@ -70,6 +60,7 @@ namespace DiaryWPF
             }
             User dummyUser = new User(0, "User", "email@gmail.com", "1234", dummyTasks);
             currentUser = dummyUser;
+            LoadDays();
         }
 
         public DateTime ChosenDate
@@ -82,6 +73,19 @@ namespace DiaryWPF
                     chosenDate = value;
                     OnPropertyChanged();
                     LoadDays();
+                }
+            }
+        }
+
+        public ObservableCollection<Day> Days
+        {
+            get { return days; }
+            set
+            {
+                if (days != value)
+                {
+                    days = value;
+                    OnPropertyChanged();
                 }
             }
         }
@@ -107,13 +111,18 @@ namespace DiaryWPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void LoadDays()
+        public void LoadDays()
         {
             Days = new ObservableCollection<Day>();
             DateTime firstWeekDay = ChosenDate.AddDays(-(int)ChosenDate.DayOfWeek + (int)DayOfWeek.Monday);
             for (int i = 0; i < 7; i++)
             {
-                Days.Add(new Day { Date = firstWeekDay.AddDays(i) });
+                Day day = new Day { Date = firstWeekDay.AddDays(i) };
+                if (Tasks != null && day != null)
+                {
+                    day.Tasks = new ObservableCollection<Models.Task>(Tasks.Where(task => task.Date.Date == day.Date.Date));
+                }
+                Days.Add(day);
             }
         }
 
@@ -154,6 +163,8 @@ namespace DiaryWPF
         {
             AddTaskForm atForm = new AddTaskForm();
             atForm.ShowDialog();
+
+            LoadDays();
         }
 
         private void ListBoxItem_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -169,7 +180,5 @@ namespace DiaryWPF
                 }
             }
         }
-
-        
     }
 }
