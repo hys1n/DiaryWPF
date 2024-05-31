@@ -12,11 +12,11 @@ namespace DiaryWPF.Models
 
         public int Id { get; set; }
 
-        public ObservableCollection<Event> Tasks { get; set; }
+        public ObservableCollection<Task> Tasks { get; set; }
 
         public User() { }
 
-        public User(int id, string userName, string email, string password, ObservableCollection<Event> tasks)
+        public User(int id, string userName, string email, string password, ObservableCollection<Task> tasks)
         {
             Id = id;
             UserName = userName;

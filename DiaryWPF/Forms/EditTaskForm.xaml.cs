@@ -11,13 +11,13 @@ namespace DiaryWPF.Forms
     /// </summary>
     public partial class EditTaskForm : Window
     {
-        public Models.Event OriginalTask { get; set; }
+        public Models.Task OriginalTask { get; set; }
 
-        public Models.Event Task { get; set; }
+        public Models.Task Task { get; set; }
 
         private bool isProgrammaticClose = false;
 
-        public EditTaskForm(Models.Event task)
+        public EditTaskForm(Models.Task task)
         {
             InitializeComponent();
             OriginalTask = task.Clone();
@@ -78,7 +78,7 @@ namespace DiaryWPF.Forms
              );
             if (result == MessageBoxResult.Yes)
             {
-                Models.Event taskToDelete = DataContext as Models.Event;
+                Models.Task taskToDelete = DataContext as Models.Task;
 
                 if (taskToDelete != null)
                 {
