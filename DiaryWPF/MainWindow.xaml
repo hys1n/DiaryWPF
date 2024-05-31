@@ -7,7 +7,7 @@
         xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         xmlns:UserControls="clr-namespace:DiaryWPF.View.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="436" Width="810" MinWidth="800" MinHeight="450" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="436" Width="810" MinWidth="810" MinHeight="450" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="GridCellBorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="Black"/>
@@ -47,18 +47,27 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="17,0,0,0">
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Orientation="Horizontal">
                 <fa:ImageAwesome x:Name="Plus" Icon="Plus" Height="26" Width="31"/>
+                <Button  x:Name="btnAddTask" Content="Add task" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnAddTask_Click"/>
             </StackPanel>
-            <Button  x:Name="btnAddTask" Content="Add task" Width="77" Height="36"  Margin="53,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnAddTask_Click"/>
 
-            
-            <!--<UserControls:IconButton  Margin="0, 10, 0, 5" VerticalAlignment="Center" HorizontalAlignment="Center" Height="37" Width="120"/>-->
-            <UserControls:IconButton x:Name="btnInbox" Icon="Inbox" Placeholder="Inbox" Margin="0, 10, 0, 5" Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="37" Width="120"/>
-            <UserControls:IconButton x:Name="btnMyLists" Icon="Check" Placeholder="My lists" Margin="0, 5, 0, 5"  Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="37" Width="120"/>
-            <UserControls:IconButton x:Name="btnCalendar" Icon="Calendar" Placeholder="Calendar" Margin="0, 5, 0, 5"  Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="37" Width="120" Loaded="btnCalendar_Loaded"/>
+            <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 8, 0, 0">
+                <fa:ImageAwesome x:Name="Inbox" Icon="Inbox" Height="26" Width="31"/>
+                <Button  x:Name="btnInbox" Content="Inbox" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnInbox_Click"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0, 8, 0, 0">
+                <fa:ImageAwesome x:Name="MyLists" Icon="Check" Height="26" Width="31"/>
+                <Button  x:Name="btnMyLists" Content="My Lists" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0, 8, 0, 0">
+                <fa:ImageAwesome x:Name="Calendar" Icon="Calendar" Height="26" Width="31"/>
+                <Button  x:Name="btnCalendar" Content="Calendar" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnCalendar_Click"/>
+            </StackPanel>
         </Grid>
-        <Grid Grid.Column="1" Margin="10,10,10,10">
+        <Grid x:Name="CalendarGrid" Grid.Column="1" Margin="10,10,10,10" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="42"/>
                 <RowDefinition Height="*"/>
@@ -301,6 +310,41 @@
                 <ContentControl Grid.Column="5" Content="{Binding Days[5]}" ContentTemplate="{StaticResource DayBlockTemplate}" />
                 <ContentControl Grid.Column="6" Content="{Binding Days[6]}" ContentTemplate="{StaticResource DayBlockTemplate}" />
             </Grid>
+        </Grid>
+        <Grid x:Name="InboxGrid" Grid.Column="1" Margin="10,10,10,10" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height=" Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Expander HorizontalAlignment="Left" Height="100" Header="Notifications" VerticalAlignment="Top" Width="609" Grid.Row="0" Margin="10,10,0,0" Grid.RowSpan="3">
+                <ListBox ItemsSource="{Binding FilteredTasks}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <CheckBox Name="lbCheckBox" Margin="0, 0, 5, 0" Grid.Column="0" IsChecked="{Binding IsCompleted, Mode=TwoWay}"/>
+                                <TextBlock Name="lbTextBlock" Text="{Binding Title}" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                    <Setter TargetName="lbTextBlock" Property="TextDecorations" Value="Strikethrough"/>
+                                    <Setter TargetName="lbTextBlock" Property="Foreground" Value="LightGray"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <EventSetter Event="MouseLeftButtonUp" Handler="ListBoxItem_MouseLeftButtonUp"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </Expander>
         </Grid>
     </Grid>
 </Window>

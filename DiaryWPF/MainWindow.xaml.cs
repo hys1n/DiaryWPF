@@ -10,9 +10,6 @@ using System.Linq;
 
 namespace DiaryWPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public static List<User> users;
@@ -22,7 +19,23 @@ namespace DiaryWPF
         private static ObservableCollection<Models.Task> tasks;
 
         private ObservableCollection<Day> days;
-        
+
+        private ObservableCollection<Models.Task> filteredTasks;
+
+        public ObservableCollection<Models.Task> FilteredTasks
+        {
+            get { return filteredTasks; }
+            set
+            {
+                if (filteredTasks != value)
+                {
+                    filteredTasks = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
         private DateTime chosenDate = DateTime.Now;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -48,8 +61,8 @@ namespace DiaryWPF
             {
                 Models.Task task = new Models.Task(
                     "Meeting with John",
-                    new DateTime(2024, 5, 26+i),
-                    new DateTime(2024, 5, 26+i, 14, 0, 0),
+                    new DateTime(2024, 5, 28+i),
+                    new DateTime(2024, 5, 28+i, 15, 0, 0),
                     new TimeSpan(1, 0, 0),
                     "Office",
                     "Discuss quarterly results",
@@ -61,6 +74,7 @@ namespace DiaryWPF
             User dummyUser = new User(0, "User", "email@gmail.com", "1234", dummyTasks);
             currentUser = dummyUser;
             LoadDays();
+            FilterTasks();
         }
 
         public DateTime ChosenDate
@@ -126,6 +140,13 @@ namespace DiaryWPF
             }
         }
 
+        public void FilterTasks()
+        {
+            DateTime now = DateTime.Now;
+            DateTime oneHourFromNow = now.AddHours(1);
+            FilteredTasks = new ObservableCollection<Models.Task>(Tasks.Where(task => task.Date >= now && task.Date <= oneHourFromNow));
+        }
+
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show(
@@ -154,11 +175,6 @@ namespace DiaryWPF
             }
         }
 
-        private void btnCalendar_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void btnAddTask_Click(object sender, RoutedEventArgs e)
         {
             AddTaskForm atForm = new AddTaskForm();
@@ -179,6 +195,20 @@ namespace DiaryWPF
                     modifyTaskWindow.ShowDialog();
                 }
             }
+        }
+
+        private void btnInbox_Click(object sender, RoutedEventArgs e)
+        {
+            CalendarGrid.Visibility = Visibility.Collapsed;
+
+            InboxGrid.Visibility = Visibility.Visible;
+        }
+
+        private void btnCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            CalendarGrid.Visibility = Visibility.Visible;
+
+            InboxGrid.Visibility = Visibility.Collapsed;
         }
     }
 }

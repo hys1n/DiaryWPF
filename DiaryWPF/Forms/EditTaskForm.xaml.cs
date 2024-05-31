@@ -63,6 +63,7 @@ namespace DiaryWPF.Forms
             {
                 RestoreTask();
                 isProgrammaticClose = true;
+                DayLoader.LoadDays();
                 Close();
             }
         }
@@ -111,6 +112,7 @@ namespace DiaryWPF.Forms
                 if (result == MessageBoxResult.Yes)
                 {
                     RestoreTask();
+                    DayLoader.LoadDays();
                 }
                 else
                 {
