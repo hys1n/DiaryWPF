@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiaryWPF.Forms"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         xmlns:UserControls="clr-namespace:DiaryWPF.View.UserControls" x:Class="DiaryWPF.Forms.AddTaskForm"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
@@ -148,15 +149,24 @@
             <Label x:Name="rfName" Content="Task" FontWeight="Bold" FontSize="32" Padding="0" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" Grid.Row="0"/>
             <TextBox Style="{DynamicResource TextBoxPlaceholderStyle}" Text="{Binding TaskTitle, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" ToolTip="{Binding ErrorCollection[TaskTitle]}" Padding="5, 0, 0, 0" FontSize="14" x:Name="titleTextBox" VerticalContentAlignment="Center" Width="328" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,10,0,0" Grid.Row="1"/>
 
-            <Label Content="Date:" FontSize="16" Padding="0" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-            <DatePicker HorizontalAlignment="Left" Margin="95,10,0,0" SelectedDate="{Binding TaskDateTime}" VerticalAlignment="Top" Grid.Row="2" Grid.RowSpan="2"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <Label Content="Date:" FontSize="16" Padding="0" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top"/>
+                <DatePicker Width="100" HorizontalAlignment="Left" Margin="34,10,0,0" SelectedDate="{Binding TaskDateTime}" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                <fa:ImageAwesome Foreground="{StaticResource InfoIconColor}" VerticalAlignment="Top" Icon="InfoCircle" Height="15" Width="15" ToolTip="Date format: Day/Month/Year (e.g. 31/05/2024)" Margin="4,15,0,0"/>
+            </StackPanel>
 
-            <Label Content="Time:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Margin="25,10,0,0"/>
-            <xctk:DateTimePicker x:Name="timePicker" Format="Custom" FormatString="HH:mm" TimePickerVisibility="Visible" Value="{Binding TaskTime}" ShowDropDownButton="False" Width="100" HorizontalAlignment="Left" Height="20"  Grid.Row="3" Margin="95,10,0,1"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="3">
+                <Label Content="Time:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="25,10,0,0"/>
+                <xctk:DateTimePicker x:Name="timePicker" Format="Custom" FormatString="HH:mm" TimePickerVisibility="Visible" Value="{Binding TaskTime}" ShowDropDownButton="False" Width="100" HorizontalAlignment="Left" Height="20"   Margin="32,10,0,1"/>
+                <fa:ImageAwesome Foreground="{StaticResource InfoIconColor}" VerticalAlignment="Top" Icon="InfoCircle" Height="15" Width="15" ToolTip="Time format: Hours:Minutes (e.g. 15:45)" Margin="5,12,0,0"/>
+            </StackPanel>
 
 
-            <Label Content="Duration:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="25,10,0,0"/>
-            <xctk:TimeSpanUpDown DefaultValue="00:30:00" ClipValueToMinMax="True" Value="{Binding TaskDuration}" Width="102" Height="20"  HorizontalAlignment="Left" Grid.Row="4"  Minimum="00:00:00" AllowSpin="True" Margin="95,10,0,1"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="4">
+                <Label Content="Duration:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="25,10,0,0"/>
+                <xctk:TimeSpanUpDown DefaultValue="00:30:00" ClipValueToMinMax="True" Value="{Binding TaskDuration}" Width="100" Height="20"  HorizontalAlignment="Left" Grid.Row="4"  Minimum="00:00:00" AllowSpin="True" Margin="6,10,0,1"/>
+                <fa:ImageAwesome Foreground="{StaticResource InfoIconColor}" VerticalAlignment="Top" Icon="InfoCircle" Height="15" Width="15" ToolTip="Duration format: Days:Hours:Minutes:Seconds (e.g. 04:03:31:04)" Margin="4,12,0,0"/>
+            </StackPanel>
 
             <Label Content="Location:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Margin="25,10,0,0"/>
             <TextBox Name="textBoxLocation" Text="{Binding TaskLocation, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" ToolTip="{Binding ErrorCollection[TaskLocation]}" Grid.Row="5" Width="163" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="95,11,0,1"/>

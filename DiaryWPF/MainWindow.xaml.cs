@@ -22,20 +22,6 @@ namespace DiaryWPF
 
         private ObservableCollection<Models.Task> filteredTasks;
 
-        public ObservableCollection<Models.Task> FilteredTasks
-        {
-            get { return filteredTasks; }
-            set
-            {
-                if (filteredTasks != value)
-                {
-                    filteredTasks = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-
         private DateTime chosenDate = DateTime.Now;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -46,7 +32,7 @@ namespace DiaryWPF
             users = new List<User>();
 
             DataContext = this;
-            
+
 
             //var loginWindow = new RegistrationForm();
             //bool? dialogResult = loginWindow.ShowDialog();
@@ -61,8 +47,8 @@ namespace DiaryWPF
             {
                 Models.Task task = new Models.Task(
                     "Meeting with John",
-                    new DateTime(2024, 5, 28+i),
-                    new DateTime(2024, 5, 28+i, 15, 0, 0),
+                    new DateTime(2024, 5, 29+i),
+                    new DateTime(2024, 5, 29+i, 17, 0, 0),
                     new TimeSpan(1, 0, 0),
                     "Office",
                     "Discuss quarterly results",
@@ -73,8 +59,20 @@ namespace DiaryWPF
             }
             User dummyUser = new User(0, "User", "email@gmail.com", "1234", dummyTasks);
             currentUser = dummyUser;
-            LoadDays();
-            FilterTasks();
+            UpdateViewData.LoadData();
+        }
+
+        public ObservableCollection<Models.Task> FilteredTasks
+        {
+            get { return filteredTasks; }
+            set
+            {
+                if (filteredTasks != value)
+                {
+                    filteredTasks = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         public DateTime ChosenDate
@@ -144,7 +142,13 @@ namespace DiaryWPF
         {
             DateTime now = DateTime.Now;
             DateTime oneHourFromNow = now.AddHours(1);
-            FilteredTasks = new ObservableCollection<Models.Task>(Tasks.Where(task => task.Date >= now && task.Date <= oneHourFromNow));
+            FilteredTasks = new ObservableCollection<Models.Task>(
+                Tasks.Where(task => 
+                    task.Date.Date == now.Date && 
+                    task.Time.TimeOfDay >= now.TimeOfDay && 
+                    task.Time.TimeOfDay <= oneHourFromNow.TimeOfDay
+                )
+            );
         }
 
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
@@ -180,7 +184,7 @@ namespace DiaryWPF
             AddTaskForm atForm = new AddTaskForm();
             atForm.ShowDialog();
 
-            LoadDays();
+            UpdateViewData.LoadData();
         }
 
         private void ListBoxItem_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)

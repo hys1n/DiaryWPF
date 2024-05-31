@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         xmlns:local="clr-namespace:DiaryWPF.Forms"
         mc:Ignorable="d"
         Title="EditTaskForm" Height="Auto" Width="Auto" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize" Closing="Window_Closing">
@@ -167,11 +168,17 @@
         </TextBox>
         <CheckBox x:Name="taskCompletedCheckBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" IsChecked="{Binding IsCompleted, Mode=TwoWay}" Margin="0,47,48,0"/>
 
-        <Label Content="Time:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Margin="35,17,0,0"/>
-        <xctk:DateTimePicker x:Name="timePicker" Format="Custom" FormatString="HH:mm" TimePickerVisibility="Visible" Value="{Binding Time, Mode=TwoWay}" ShowDropDownButton="False" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20"  Grid.Row="2" Margin="104,19,0,0" />
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <Label Content="Time:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Margin="35,17,0,0"/>
+            <xctk:DateTimePicker x:Name="timePicker" Format="Custom" FormatString="HH:mm" TimePickerVisibility="Visible" Value="{Binding Time, Mode=TwoWay}" ShowDropDownButton="False" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20"  Grid.Row="2" Margin="31,19,0,0" />
+            <fa:ImageAwesome Foreground="{StaticResource InfoIconColor}" VerticalAlignment="Center" Icon="InfoCircle" Height="15" Width="15" ToolTip="Time format: Hours:Minutes (e.g. 15:45)" Margin="5,15,0,0"/>
+        </StackPanel>
 
-        <Label Content="Duration:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Margin="35,10,0,0"/>
-        <xctk:TimeSpanUpDown DefaultValue="00:30:00" ClipValueToMinMax="True" Value="{Binding Duration, Mode=TwoWay}" Width="102" Height="20" VerticalAlignment="Top"  HorizontalAlignment="Left" Grid.Row="3"  Minimum="00:00:00" AllowSpin="True" Margin="104,10,0,0"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="3">
+            <Label Content="Duration:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Margin="35,10,0,0"/>
+            <xctk:TimeSpanUpDown DefaultValue="00:30:00" ClipValueToMinMax="True" Value="{Binding Duration, Mode=TwoWay}" Width="102" Height="20" VerticalAlignment="Top"  HorizontalAlignment="Left" Grid.Row="3"  Minimum="00:00:00" AllowSpin="True" Margin="4,10,0,0"/>
+            <fa:ImageAwesome Foreground="{StaticResource InfoIconColor}" VerticalAlignment="Top" Icon="InfoCircle" Height="15" Width="15" ToolTip="Duration format: Days:Hours:Minutes:Seconds (e.g. 04:03:31:04)" Margin="4,12,0,0"/>
+        </StackPanel>
 
         <Label Name="TextBoxLocation" Content="Location:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="35,7,0,0"/>
         <TextBox Name="textBoxLocation" Text="{Binding Location, Mode=TwoWay}"  Grid.Row="4" Width="163" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="104,8,0,0"/>

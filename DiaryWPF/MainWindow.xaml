@@ -59,7 +59,7 @@
 
             <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0, 8, 0, 0">
                 <fa:ImageAwesome x:Name="MyLists" Icon="Check" Height="26" Width="31"/>
-                <Button  x:Name="btnMyLists" Content="My Lists" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Button  x:Name="btnMyLists" Content="All tasks" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0, 8, 0, 0">
@@ -317,7 +317,16 @@
                 <RowDefinition Height=" Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Expander HorizontalAlignment="Left" Height="100" Header="Notifications" VerticalAlignment="Top" Width="609" Grid.Row="0" Margin="10,10,0,0" Grid.RowSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Expander HorizontalAlignment="Stretch" Height="100" VerticalAlignment="Top" MinWidth="600" Grid.Row="0" Margin="10,10,0,0" Grid.RowSpan="3" IsExpanded="True">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Notifications" VerticalAlignment="Center"/>
+                        <fa:ImageAwesome Foreground="{StaticResource InfoIconColor}" Margin="4, 0, 0, 0" Icon="InfoCircle" Height="15" Width="15" ToolTip="Tasks which start within 1 hour"/>
+                    </StackPanel>
+                </Expander.Header>
                 <ListBox ItemsSource="{Binding FilteredTasks}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>

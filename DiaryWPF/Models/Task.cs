@@ -17,6 +17,7 @@
         public bool IsCompleted { get; set; }
 
         public Task() { }
+
         public Task(string title, DateTime date, DateTime time, TimeSpan duration, string location, string description, bool isCompleted)
         {
             Title = title;

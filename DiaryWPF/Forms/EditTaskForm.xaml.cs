@@ -36,7 +36,7 @@ namespace DiaryWPF.Forms
                 if (result == MessageBoxResult.Yes)
                 {
                     isProgrammaticClose = true;
-                    DayLoader.LoadDays();
+                    UpdateViewData.LoadData();
                     Close();
                 }
         }
@@ -63,7 +63,7 @@ namespace DiaryWPF.Forms
             {
                 RestoreTask();
                 isProgrammaticClose = true;
-                DayLoader.LoadDays();
+                UpdateViewData.LoadData();
                 Close();
             }
         }
@@ -87,7 +87,7 @@ namespace DiaryWPF.Forms
 
                 isProgrammaticClose = true;
                 Close();
-                DayLoader.LoadDays();
+                UpdateViewData.LoadData();
 
                 MessageBox.Show(
                      "The task successfully deleted!",
@@ -112,7 +112,7 @@ namespace DiaryWPF.Forms
                 if (result == MessageBoxResult.Yes)
                 {
                     RestoreTask();
-                    DayLoader.LoadDays();
+                    UpdateViewData.LoadData();
                 }
                 else
                 {
