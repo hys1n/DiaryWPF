@@ -67,7 +67,7 @@
                 <Button  x:Name="btnCalendar" Content="Calendar" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnCalendar_Click"/>
             </StackPanel>
         </Grid>
-        <Grid x:Name="CalendarGrid" Grid.Column="1" Margin="10,10,10,10" Visibility="Hidden">
+        <Grid x:Name="CalendarGrid" Grid.Column="1" Margin="10,10,10,10" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="42"/>
                 <RowDefinition Height="*"/>
@@ -311,7 +311,7 @@
                 <ContentControl Grid.Column="6" Content="{Binding Days[6]}" ContentTemplate="{StaticResource DayBlockTemplate}" />
             </Grid>
         </Grid>
-        <Grid x:Name="InboxGrid" Grid.Column="1" Margin="10,10,10,10" Visibility="Visible">
+        <Grid x:Name="InboxGrid" Grid.Column="1" Margin="10,10,10,10" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height=" Auto"/>

@@ -183,6 +183,7 @@ namespace DiaryWPF.Forms
                 isProgrammaticClose = true;
                 Close();
 
+                UpdateViewData.LoadData();
                 MessageBox.Show("Task added successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }

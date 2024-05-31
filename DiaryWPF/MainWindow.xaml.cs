@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DiaryWPF
 {
@@ -141,12 +142,20 @@ namespace DiaryWPF
         public void FilterTasks()
         {
             DateTime now = DateTime.Now;
+            DateTime tomorrow = DateTime.Today.AddDays(1);
             DateTime oneHourFromNow = now.AddHours(1);
             FilteredTasks = new ObservableCollection<Models.Task>(
                 Tasks.Where(task => 
-                    task.Date.Date == now.Date && 
-                    task.Time.TimeOfDay >= now.TimeOfDay && 
-                    task.Time.TimeOfDay <= oneHourFromNow.TimeOfDay
+                    (
+                        task.Date.Date == now.Date && 
+                        task.Time.TimeOfDay >= now.TimeOfDay && 
+                        task.Time.TimeOfDay <= oneHourFromNow.TimeOfDay
+                    ) ||
+                    (
+                        task.Date.Date == tomorrow.Date &&
+                        task.Time.TimeOfDay >= tomorrow.TimeOfDay &&
+                        task.Time.TimeOfDay <= oneHourFromNow.TimeOfDay
+                    )
                 )
             );
         }
