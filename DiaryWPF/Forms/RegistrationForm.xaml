@@ -25,11 +25,11 @@
             <UserControls:BindablePasswordBox ToolTip="{Binding ErrorCollection[Password]}" Password="{Binding Password, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="1" Height="27" Margin="25,133,25,171" />
 
             <Button Name="btnCreateAccount" Background="#106BA3" BorderThickness="0" Foreground="White" Content="Create account" FontWeight="Bold" HorizontalAlignment="Center" Height="27" Width="250" Margin="0,177,0,127" Grid.Row="1" Click="btnCreateAccount_Click"/>
-            <Rectangle HorizontalAlignment="Center" Height="1" Stroke="LightGray" VerticalAlignment="Top" Width="300" Margin="0,214,0,0" Grid.Row="1" />
-            <Label Name="rfQuestion" Content="Have an account?" Padding="0" HorizontalAlignment="Left" Margin="76,226,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-            <Button Name="btnLogIn" BorderThickness="0" Background="Transparent" Foreground="#2477AA" HorizontalAlignment="Left" Margin="174,226,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.572,0.086" Grid.Row="1" Click="btnLogIn_Click">
-                <TextBlock Name="btnLogInText" TextDecorations="Underline" Text="Log in"/>
-            </Button>
+            
+            <Rectangle HorizontalAlignment="Center" Height="1" Stroke="LightGray" VerticalAlignment="Top" Width="300" Margin="0,212,0,0" Grid.Row="1" />
+
+
+            <Button Name="btnLogIn" Background="#106BA3" BorderThickness="0" Foreground="White" Content="Log in" FontWeight="Bold" HorizontalAlignment="Center" Height="27" Width="250" Margin="0,221,0,83" Grid.Row="1" Click="btnLogIn_Click"/>
         </Grid>
     </Grid>
 </Window>
