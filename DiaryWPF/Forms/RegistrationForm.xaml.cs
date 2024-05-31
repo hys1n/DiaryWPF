@@ -148,7 +148,7 @@ namespace DiaryWPF.Forms
                 UserName = UserName,
                 Email = Email,
                 Password = Password,
-                Tasks = new ObservableCollection<Models.Task>()
+                Tasks = new ObservableCollection<Models.Event>()
             };
 
 

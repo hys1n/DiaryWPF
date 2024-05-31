@@ -166,7 +166,7 @@ namespace DiaryWPF.Forms
             }
             else
             {
-                Models.Task newTask = new Models.Task()
+                Models.Event newTask = new Models.Event()
                 {
                     Title = TaskTitle,
                     Date = TaskDateTime,

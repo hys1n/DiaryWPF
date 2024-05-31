@@ -17,11 +17,11 @@ namespace DiaryWPF
 
         public static User currentUser;
 
-        private static ObservableCollection<Models.Task> tasks;
+        private static ObservableCollection<Models.Event> tasks;
 
         private ObservableCollection<Day> days;
 
-        private ObservableCollection<Models.Task> filteredTasks;
+        private ObservableCollection<Models.Event> filteredTasks;
 
         private DateTime chosenDate = DateTime.Now;
 
@@ -43,10 +43,10 @@ namespace DiaryWPF
             //    Application.Current.Shutdown();
             //}
 
-            ObservableCollection<Models.Task> dummyTasks = new ObservableCollection<Models.Task>();
+            ObservableCollection<Models.Event> dummyTasks = new ObservableCollection<Models.Event>();
             for (int i = 0; i < 3; i++)
             {
-                Models.Task task = new Models.Task(
+                Models.Event task = new Models.Event(
                     "Meeting with John",
                     new DateTime(2024, 5, 29+i),
                     new DateTime(2024, 5, 29+i, 17, 0, 0),
@@ -63,7 +63,7 @@ namespace DiaryWPF
             UpdateViewData.LoadData();
         }
 
-        public ObservableCollection<Models.Task> FilteredTasks
+        public ObservableCollection<Models.Event> FilteredTasks
         {
             get { return filteredTasks; }
             set
@@ -103,7 +103,7 @@ namespace DiaryWPF
             }
         }
 
-        public static ObservableCollection<Models.Task> Tasks
+        public static ObservableCollection<Models.Event> Tasks
         {
             get
             {
@@ -133,7 +133,7 @@ namespace DiaryWPF
                 Day day = new Day { Date = firstWeekDay.AddDays(i) };
                 if (Tasks != null && day != null)
                 {
-                    day.Tasks = new ObservableCollection<Models.Task>(Tasks.Where(task => task.Date.Date == day.Date.Date));
+                    day.Tasks = new ObservableCollection<Models.Event>(Tasks.Where(task => task.Date.Date == day.Date.Date));
                 }
                 Days.Add(day);
             }
@@ -144,7 +144,7 @@ namespace DiaryWPF
             DateTime now = DateTime.Now;
             DateTime tomorrow = DateTime.Today.AddDays(1);
             DateTime oneHourFromNow = now.AddHours(1);
-            FilteredTasks = new ObservableCollection<Models.Task>(
+            FilteredTasks = new ObservableCollection<Models.Event>(
                 Tasks.Where(task => 
                     (
                         task.Date.Date == now.Date && 
@@ -183,7 +183,7 @@ namespace DiaryWPF
                 else
                 {
                     Show();
-                    Tasks = new ObservableCollection<Models.Task>(currentUser.Tasks);
+                    Tasks = new ObservableCollection<Models.Event>(currentUser.Tasks);
                 }
             }
         }
@@ -201,7 +201,7 @@ namespace DiaryWPF
             ListBoxItem item = sender as ListBoxItem;
             if (item != null)
             {
-                Models.Task clickedTask = item.DataContext as Models.Task;
+                Models.Event clickedTask = item.DataContext as Models.Event;
                 if (clickedTask != null)
                 {
                     EditTaskForm modifyTaskWindow = new EditTaskForm(clickedTask);

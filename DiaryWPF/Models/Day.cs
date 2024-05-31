@@ -13,11 +13,11 @@ namespace DiaryWPF.Models
 
         public string DayOfWeek => Date.ToString("ddd");
 
-        public ObservableCollection<Models.Task> Tasks { get; set; } 
+        public ObservableCollection<Models.Event> Tasks { get; set; } 
 
         public Day()
         {
-            Tasks = new ObservableCollection<Models.Task>();
+            Tasks = new ObservableCollection<Models.Event>();
         }
     }
 }

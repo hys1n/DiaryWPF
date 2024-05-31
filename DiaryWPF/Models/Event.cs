@@ -1,6 +1,6 @@
 ﻿namespace DiaryWPF.Models
 {
-    public class Task
+    public class Event
     {
         public string Title { get; set; }
 
@@ -16,9 +16,9 @@
 
         public bool IsCompleted { get; set; }
 
-        public Task() { }
+        public Event() { }
 
-        public Task(string title, DateTime date, DateTime time, TimeSpan duration, string location, string description, bool isCompleted)
+        public Event(string title, DateTime date, DateTime time, TimeSpan duration, string location, string description, bool isCompleted)
         {
             Title = title;
             Date = date;
@@ -30,9 +30,9 @@
         }
 
         // Utility method for cloning an object
-        public Task Clone()
+        public Event Clone()
         {
-            return new Task
+            return new Event
             {
                 Title = Title,
                 Date = Date,
