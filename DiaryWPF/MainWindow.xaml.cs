@@ -44,12 +44,12 @@ namespace DiaryWPF
             //}
 
             ObservableCollection<Models.Task> dummyTasks = new ObservableCollection<Models.Task>();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 1111131; i++)
             {
                 Models.Task task = new Models.Task(
-                    "Meeting with John",
-                    new DateTime(2024, 5, 29+i),
-                    new DateTime(2024, 5, 29+i, 17, 0, 0),
+                    $"Meeting with John_{i}",
+                    new DateTime(2024, 5, 29),
+                    new DateTime(2024, 5, 29, 17, 0, 0),
                     new TimeSpan(1, 0, 0),
                     "Office",
                     "Discuss quarterly results",
@@ -210,18 +210,29 @@ namespace DiaryWPF
             }
         }
 
-        private void btnInbox_Click(object sender, RoutedEventArgs e)
+        // Hides all grids and shows only the proper one
+        private void ShowGrid(Grid gridToShow)
         {
             CalendarGrid.Visibility = Visibility.Collapsed;
+            InboxGrid.Visibility = Visibility.Collapsed;
+            AllTasksGrid.Visibility = Visibility.Collapsed;
 
-            InboxGrid.Visibility = Visibility.Visible;
+            gridToShow.Visibility = Visibility.Visible;
+        }
+
+        private void btnInbox_Click(object sender, RoutedEventArgs e)
+        {
+            ShowGrid(InboxGrid);
         }
 
         private void btnCalendar_Click(object sender, RoutedEventArgs e)
         {
-            CalendarGrid.Visibility = Visibility.Visible;
+            ShowGrid(CalendarGrid);
+        }
 
-            InboxGrid.Visibility = Visibility.Collapsed;
+        private void btnAllTasks_Click(object sender, RoutedEventArgs e)
+        {
+            ShowGrid(AllTasksGrid);
         }
     }
 }
