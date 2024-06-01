@@ -9,7 +9,7 @@
         xmlns:UserControls="clr-namespace:DiaryWPF.View.UserControls" x:Class="DiaryWPF.Forms.AddTaskForm"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="AddTaskForm" Height="421" Width="384" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="Add Task" Height="421" Width="384" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Window.Resources>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>

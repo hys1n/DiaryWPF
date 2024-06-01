@@ -3,11 +3,8 @@ using DiaryWPF.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DiaryWPF
 {
@@ -44,10 +41,10 @@ namespace DiaryWPF
             //}
 
             ObservableCollection<Models.Task> dummyTasks = new ObservableCollection<Models.Task>();
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Models.Task task = new Models.Task(
-                    $"Meeting with John_{i}",
+                    $"Task_{i}",
                     new DateTime(2024, 5, 29),
                     new DateTime(2024, 5, 29, 17, 0, 0),
                     new TimeSpan(1, 0, 0),

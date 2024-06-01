@@ -7,7 +7,7 @@
         xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         xmlns:UserControls="clr-namespace:DiaryWPF.View.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="436" Width="810" MinWidth="810" MinHeight="450" WindowStartupLocation="CenterScreen">
+        Title="Diary" Height="436" Width="810" MinWidth="810" MinHeight="450" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="GridCellBorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="Black"/>

@@ -1,7 +1,5 @@
 ﻿using DiaryWPF.Models;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace DiaryWPF.Forms
