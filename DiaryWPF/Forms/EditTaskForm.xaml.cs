@@ -27,6 +27,13 @@ namespace DiaryWPF.Forms
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(Task.Title) || Task.Title.Length > 32 
+                || string.IsNullOrWhiteSpace(Task.Location) || AddTaskForm.IsValidStreetName(Task.Location))
+            {
+                MessageBox.Show("Not all input fields are filled or input text is invalid", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
                 MessageBoxResult result = MessageBox.Show(
                                     "Are you sure you want to edit?",
                                     "Confirmation",
@@ -39,6 +46,7 @@ namespace DiaryWPF.Forms
                     UpdateViewData.LoadData();
                     Close();
                 }
+            }
         }
 
         private void RestoreTask()

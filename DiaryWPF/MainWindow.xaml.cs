@@ -44,7 +44,7 @@ namespace DiaryWPF
             //}
 
             ObservableCollection<Models.Task> dummyTasks = new ObservableCollection<Models.Task>();
-            for (int i = 0; i < 1111131; i++)
+            for (int i = 0; i < 8; i++)
             {
                 Models.Task task = new Models.Task(
                     $"Meeting with John_{i}",

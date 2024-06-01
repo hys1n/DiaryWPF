@@ -86,7 +86,6 @@ namespace DiaryWPF.Forms
             set { taskDescription = value.Trim(); }
         }
 
-
         public string this[string columnName]
         {
             get
@@ -99,7 +98,7 @@ namespace DiaryWPF.Forms
                         if (string.IsNullOrEmpty(TaskTitle))
                             result = "Task title cannot be empty";
                         else if (TaskTitle.Length > 32)
-                            result = "Task must be a maximum of 32 characters";
+                            result = "Task title must be a maximum of 32 characters";
                         break;
                     case nameof(TaskLocation):
                         if (string.IsNullOrEmpty(TaskLocation))
@@ -136,27 +135,6 @@ namespace DiaryWPF.Forms
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        //private void SetDefaultInputFields()
-        //{
-        //    TaskTitle = "";
-        //    OnPropertyChanged(nameof(TaskTitle));
-
-        //    TaskLocation = "";
-        //    OnPropertyChanged(nameof(TaskLocation));
-
-        //    TaskDescription = "";
-        //    OnPropertyChanged(nameof(TaskDescription));
-
-        //    TaskDateTime = DateTime.Now;
-        //    OnPropertyChanged(nameof(TaskDateTime));
-
-        //    TaskTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 9, 0, 0);
-        //    OnPropertyChanged(nameof(TaskTime));
-
-        //    TaskDuration = TimeSpan.FromMinutes(30);
-        //    OnPropertyChanged(nameof(TaskDuration));
-        //}
 
         private void AddTask()
         {
