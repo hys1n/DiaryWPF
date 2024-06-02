@@ -45,8 +45,8 @@ namespace DiaryWPF
             {
                 Models.Task task = new Models.Task(
                     $"Task_{i}",
-                    new DateTime(2024, 5, 29),
-                    new DateTime(2024, 5, 29, 17, 0, 0),
+                    new DateTime(2024, 6, 3),
+                    new DateTime(2024, 6, 3, 17, 0, 0),
                     new TimeSpan(1, 0, 0),
                     "Office",
                     "Discuss quarterly results",
@@ -124,7 +124,11 @@ namespace DiaryWPF
         public void LoadDays()
         {
             Days = new ObservableCollection<Day>();
+
             DateTime firstWeekDay = ChosenDate.AddDays(-(int)ChosenDate.DayOfWeek + (int)DayOfWeek.Monday);
+            if (ChosenDate.DayOfWeek == DayOfWeek.Sunday)
+                firstWeekDay = ChosenDate.AddDays(-7 + (int)DayOfWeek.Monday);
+
             for (int i = 0; i < 7; i++)
             {
                 Day day = new Day { Date = firstWeekDay.AddDays(i) };
