@@ -2,7 +2,9 @@
 using DiaryWPF.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -27,8 +29,8 @@ namespace DiaryWPF
         public MainWindow()
         {
             InitializeComponent();
-            users = new List<User>();
 
+            LoadUsersFromJson();
             DataContext = this;
             RegisterForm();
 
@@ -112,6 +114,29 @@ namespace DiaryWPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private void SaveUsersToJson()
+        {
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true 
+            };
+            string json = JsonSerializer.Serialize(users, options);
+            File.WriteAllText("users.json", json);
+        }
+
+        private void LoadUsersFromJson()
+        {
+            if (File.Exists("users.json"))
+            {
+                string json = File.ReadAllText("users.json");
+                users = JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
+            }
+            else
+            {
+                users = new List<User>();
+            }
+        }
+
         // Invokes a register form for singing up/in
         public void RegisterForm()
         {
@@ -175,7 +200,9 @@ namespace DiaryWPF
 
             if (result == MessageBoxResult.Yes)
             {
+                SaveUsersToJson();
                 Hide();
+
 
                 var registrationForm = new RegistrationForm();
                 bool? dialogResult = registrationForm.ShowDialog();
@@ -237,6 +264,24 @@ namespace DiaryWPF
         private void btnAllTasks_Click(object sender, RoutedEventArgs e)
         {
             ShowGrid(AllTasksGrid);
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(
+                "Are you sure you want to exit?",
+                "Confirmation",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+            if ( result == MessageBoxResult.Yes )
+            {
+                SaveUsersToJson();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
