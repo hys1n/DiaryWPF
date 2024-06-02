@@ -30,34 +30,25 @@ namespace DiaryWPF
             users = new List<User>();
 
             DataContext = this;
+            RegisterForm();
 
-
-            //var loginWindow = new RegistrationForm();
-            //bool? dialogResult = loginWindow.ShowDialog();
-
-            //if (dialogResult != true)
+            //ObservableCollection<Models.Task> dummyTasks = new ObservableCollection<Models.Task>();
+            //for (int i = 0; i < 4; i++)
             //{
-            //    Application.Current.Shutdown();
+            //    Models.Task task = new Models.Task(
+            //        $"Task_{i}",
+            //        new DateTime(2024, 6, 2),
+            //        new DateTime(2024, 6, 2, 17, 0, 0),
+            //        new TimeSpan(1, 0, 0),
+            //        "вул. Шевченка",
+            //        "",
+            //        false
+            //    );
+
+            //    dummyTasks.Add(task);
             //}
-
-            ObservableCollection<Models.Task> dummyTasks = new ObservableCollection<Models.Task>();
-            for (int i = 0; i < 4; i++)
-            {
-                Models.Task task = new Models.Task(
-                    $"Task_{i}",
-                    new DateTime(2024, 6, 3),
-                    new DateTime(2024, 6, 3, 17, 0, 0),
-                    new TimeSpan(1, 0, 0),
-                    "Office",
-                    "Discuss quarterly results",
-                    false
-                );
-
-                dummyTasks.Add(task);
-            }
-            User dummyUser = new User(0, "User", "email@gmail.com", "1234", dummyTasks);
-            currentUser = dummyUser;
-            UpdateViewData.LoadData();
+            //User dummyUser = new User(0, "User", "email@gmail.com", "1234", dummyTasks);
+            //currentUser = dummyUser;
         }
 
         public ObservableCollection<Models.Task> FilteredTasks
@@ -119,6 +110,18 @@ namespace DiaryWPF
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        // Invokes a register form for singing up/in
+        public void RegisterForm()
+        {
+            var loginWindow = new RegistrationForm();
+            bool? dialogResult = loginWindow.ShowDialog();
+
+            if (dialogResult != true)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         public void LoadDays()

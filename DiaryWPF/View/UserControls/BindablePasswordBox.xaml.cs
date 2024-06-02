@@ -3,6 +3,7 @@ using System.Windows.Controls;
 
 namespace DiaryWPF.View.UserControls
 {
+    // Utility class for retrieving password input
     public partial class BindablePasswordBox : UserControl
     {
         public string Password

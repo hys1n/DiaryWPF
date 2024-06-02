@@ -154,6 +154,7 @@ namespace DiaryWPF.Forms
 
             users.Add(newUser);
             MainWindow.currentUser = newUser;
+            UpdateViewData.LoadData();
 
             MessageBox.Show("User registered successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
             return true; 
@@ -173,6 +174,7 @@ namespace DiaryWPF.Forms
                     if (user.Email == Email && user.UserName == UserName && user.Password == Password)
                     {
                         MainWindow.currentUser = user;
+                        UpdateViewData.LoadData();
                         MessageBox.Show("You've logged in successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         return true;
                     }

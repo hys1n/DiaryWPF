@@ -67,7 +67,7 @@
                 <Button  x:Name="btnCalendar" Content="Calendar" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnCalendar_Click"/>
             </StackPanel>
         </Grid>
-        <Grid x:Name="CalendarGrid" Grid.Column="1" Margin="10,10,10,10" Visibility="Hidden">
+        <Grid x:Name="CalendarGrid" Grid.Column="1" Margin="10,10,10,10" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="42"/>
                 <RowDefinition Height="*"/>
@@ -355,7 +355,7 @@
                 </ListBox>
             </Expander>
         </Grid>
-        <Grid x:Name="AllTasksGrid" Grid.Column="1" Visibility="Visible">
+        <Grid x:Name="AllTasksGrid" Grid.Column="1" Visibility="Hidden">
             <Expander HorizontalAlignment="Stretch" Height="185" VerticalAlignment="Top" Grid.Row="0" Margin="10,10,10,0" IsExpanded="True">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
