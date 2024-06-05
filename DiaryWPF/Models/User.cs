@@ -1,7 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace DiaryWPF.Models
+namespace Diary.Models
 {
+    /// <summary>
+    /// A class which stores all the information about 
+    /// the user.
+    /// </summary>
     public class User
     {
         public string UserName { get; set; }
@@ -15,14 +19,5 @@ namespace DiaryWPF.Models
         public ObservableCollection<Task> Tasks { get; set; }
 
         public User() { }
-
-        public User(int id, string userName, string email, string password, ObservableCollection<Task> tasks)
-        {
-            Id = id;
-            UserName = userName;
-            Email = email;
-            Password = password;
-            Tasks = tasks;
-        }
     }
 }

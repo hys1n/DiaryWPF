@@ -1,15 +1,11 @@
-﻿<Application x:Class="DiaryWPF.App"
+﻿<Application x:Class="Diary.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:DiaryWPF"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:Diary"
+             StartupUri="Forms/RegistrationForm.xaml">
     <Application.Resources>
-        <ResourceDictionary>
-            <FontFamily x:Key="FontAwesome">/Fonts/fontawesome-webfont.ttf#Fontawesome</FontFamily>
-            <SolidColorBrush x:Key="InfoIconColor" Color="#787878" />
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/ButtonStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
     </Application.Resources>
 </Application>
