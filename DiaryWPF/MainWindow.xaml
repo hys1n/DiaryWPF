@@ -3,10 +3,70 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+        xmlns:views="clr-namespace:DiaryWPF.Views"
         xmlns:local="clr-namespace:Diary"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Diary" Height="436" Width="810" MinWidth="810" MinHeight="450" WindowStartupLocation="CenterScreen" >
+    <Window.Resources>
+        <Style x:Key="GridCellBorderStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1, 0, 0, 1"/>
+            <Setter Property="Grid.Row" Value="1"/>
+        </Style>
+        <Style x:Key="GridCellDayBlockBorderStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1, 1, 0, 1"/>
+            <Setter Property="Grid.Row" Value="0"/>
+        </Style>
+        <DataTemplate x:Key="DayBlockTemplate">
+            <Border Style="{StaticResource GridCellBorderStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Date, StringFormat='{}{0:ddd, dd.MM}'}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Column="0" Fill="#efeded"/>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="10,16,0,0">
+            <fa:ImageAwesome x:Name="fontIcon" Icon="ArrowCircleLeft" Height="26" Width="31"/>
+        </StackPanel>
+        <Button x:Name="btnLogOut" Content="Log out" Width="77" Height="37" VerticalAlignment="Top" Margin="42,11,42,0"/>
+        <Grid VerticalAlignment="Top"  Margin="21,53,0,0" HorizontalAlignment="Left" Height="Auto" Width="140">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Orientation="Horizontal">
+                <fa:ImageAwesome x:Name="Plus" Icon="Plus" Height="26" Width="31"/>
+                <Button  x:Name="btnAddTask" Content="Add task" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </StackPanel>
 
+            <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 8, 0, 0">
+                <fa:ImageAwesome x:Name="Inbox" Icon="Inbox" Height="26" Width="31"/>
+                <Button  x:Name="btnInbox" Content="Inbox" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0, 8, 0, 0">
+                <fa:ImageAwesome x:Name="AllTasksIcon" Icon="Check" Height="26" Width="31"/>
+                <Button x:Name="btnAllTasks" Content="All tasks" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0, 8, 0, 0">
+                <fa:ImageAwesome x:Name="Calendar" Icon="Calendar" Height="26" Width="31"/>
+                <Button  x:Name="btnCalendar" Content="Calendar" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </Grid>
+        <views:CalendarView Grid.Column="1"/>
     </Grid>
 </Window>

@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:Diary"
              StartupUri="Forms/RegistrationForm.xaml">
     <Application.Resources>
+        <FontFamily x:Key="FontAwesome">/Fonts/fontawesome-webfont.ttf#Fontawesome</FontFamily>
+        <SolidColorBrush x:Key="InfoIconColor" Color="#787878" />
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
