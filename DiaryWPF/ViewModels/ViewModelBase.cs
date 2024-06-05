@@ -7,6 +7,10 @@ using System.Text.Json;
 
 namespace Diary.ViewModels
 {
+    /// <summary>
+    /// Base view model which implements INotifyPropertyChanged and 
+    /// saving from and loading to json.
+    /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;

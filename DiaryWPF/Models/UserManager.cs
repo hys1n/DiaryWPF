@@ -3,7 +3,7 @@
 namespace Diary.Models
 {
     /// <summary>
-    /// Stores all the users and have some utility methods.
+    /// Class which stores all the users and has some utility methods.
     /// </summary>
     public class UserManager
     {

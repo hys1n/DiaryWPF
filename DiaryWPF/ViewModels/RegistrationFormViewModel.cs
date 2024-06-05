@@ -28,7 +28,6 @@ namespace Diary.ViewModels
         {
             UserManager.AddUser(new User { UserName = "user", Email = "user@gmail.com", Password = "1234" });
             
-
             RegisterUserCommand = new RegisterUserCommand(this);
             RegisterUserCommand.UserRegisteredSuccessfully += OnUserRegisteredSuccessfully;
             LogInUserCommand = new LogInUserCommand(this);

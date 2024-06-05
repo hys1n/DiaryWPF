@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using Diary.Models;
+using DiaryWPF.Models;
 
 namespace Diary.Models
 {
@@ -16,7 +18,7 @@ namespace Diary.Models
 
         public int Id { get; set; }
 
-        public ObservableCollection<Task> Tasks { get; set; }
+        public ObservableCollection<DiaryTask> Tasks { get; set; }
 
         public User() { }
     }

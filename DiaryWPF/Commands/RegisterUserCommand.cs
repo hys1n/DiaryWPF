@@ -1,5 +1,7 @@
 ﻿using Diary.Models;
 using Diary.ViewModels;
+using DiaryWPF.Models;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Diary.Commands
@@ -37,7 +39,7 @@ namespace Diary.Commands
                     UserName = viewModel.UserName,
                     Email = viewModel.Email,
                     Password = viewModel.Password,
-                    //Tasks = new ObservableCollection<>()
+                    Tasks = new ObservableCollection<DiaryTask>()
                 };
 
                 UserManager.AddUser(newUser);

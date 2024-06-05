@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DiaryWPF.Models
 {
-    public class Task
+    public class DiaryTask
     {
         public string Title { get; set; }
 
@@ -22,9 +22,10 @@ namespace DiaryWPF.Models
 
         public bool IsCompleted { get; set; }
 
-        public Task() { }
+        public DiaryTask() { }
 
-        public Task(string title, DateTime date, DateTime time, TimeSpan duration, string location, string description, bool isCompleted)
+        public DiaryTask(string title, DateTime date, DateTime time, TimeSpan duration, 
+            string location, string description, bool isCompleted)
         {
             Title = title;
             Date = date;
@@ -36,9 +37,9 @@ namespace DiaryWPF.Models
         }
 
         // Utility method for cloning an object
-        public Task Clone()
+        public DiaryTask Clone()
         {
-            return new Task
+            return new DiaryTask
             {
                 Title = Title,
                 Date = Date,
