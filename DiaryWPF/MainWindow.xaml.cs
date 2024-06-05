@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using DiaryWPF.ViewModels;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,18 @@ namespace Diary
         public MainWindow()
         {
             InitializeComponent();
+            CalendarViewModel viewModel = new CalendarViewModel();
+            DataContext = viewModel;
+        }
+
+        private void btnAllTasks_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new AllTasksViewModel();
+        }
+
+        private void btnCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new CalendarViewModel();
         }
     }
 }

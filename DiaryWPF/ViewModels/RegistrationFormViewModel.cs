@@ -10,8 +10,6 @@ namespace Diary.ViewModels
 {
     public class RegistrationFormViewModel : ViewModelBase, IDataErrorInfo
     {
-        public ObservableCollection<User> Users { get; set; }
-
         public RegisterUserCommand RegisterUserCommand { get; set; }
 
         public LogInUserCommand LogInUserCommand { get; set; }
@@ -28,7 +26,6 @@ namespace Diary.ViewModels
 
         public RegistrationFormViewModel()
         {
-            Users = UserManager.GetUsers();
             UserManager.AddUser(new User { UserName = "user", Email = "user@gmail.com", Password = "1234" });
             
 

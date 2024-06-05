@@ -26,7 +26,7 @@ namespace Diary.Commands
             if (viewModel.ErrorCollection.Count > 0 && viewModel.ErrorCollection.Any(e => e.Value != null))
             {
                 MessageBox.Show("Not all input fields are filled or input text is invalid", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-            } else if (viewModel.Users.Any(u => u.UserName == viewModel.UserName || u.Email == viewModel.Email))
+            } else if (UserManager.GetUsers().Any(u => u.UserName == viewModel.UserName || u.Email == viewModel.Email))
             {
                 MessageBox.Show("User with the same username or email already exists", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }

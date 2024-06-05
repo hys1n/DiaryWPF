@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+        xmlns:vmodels="clr-namespace:DiaryWPF.ViewModels"
         xmlns:views="clr-namespace:DiaryWPF.Views"
         xmlns:local="clr-namespace:Diary"
         mc:Ignorable="d"
@@ -28,6 +29,12 @@
                     <TextBlock Text="{Binding Date, StringFormat='{}{0:ddd, dd.MM}'}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
             </Border>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodels:CalendarViewModel}">
+            <views:CalendarView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodels:AllTasksViewModel}">
+            <views:AllTasksView DataContext="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -59,14 +66,15 @@
 
             <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0, 8, 0, 0">
                 <fa:ImageAwesome x:Name="AllTasksIcon" Icon="Check" Height="26" Width="31"/>
-                <Button x:Name="btnAllTasks" Content="All tasks" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Button x:Name="btnAllTasks" Content="All tasks" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnAllTasks_Click"/>
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0, 8, 0, 0">
                 <fa:ImageAwesome x:Name="Calendar" Icon="Calendar" Height="26" Width="31"/>
-                <Button  x:Name="btnCalendar" Content="Calendar" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Button  x:Name="btnCalendar" Content="Calendar" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnCalendar_Click"/>
             </StackPanel>
         </Grid>
-        <views:CalendarView Grid.Column="1"/>
+
+        <ContentControl Grid.Column="1" Content="{Binding}"/>
     </Grid>
 </Window>
