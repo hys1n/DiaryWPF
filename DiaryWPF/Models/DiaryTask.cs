@@ -46,7 +46,7 @@ namespace DiaryWPF.Models
         /// </summary>
         /// <param name="tasks">Tasks that are filtered.</param>
         /// <returns></returns>
-        public ObservableCollection<DiaryTask> FilterTasks(ObservableCollection<DiaryTask> tasks)
+        public static ObservableCollection<DiaryTask> FilterTasks(ObservableCollection<DiaryTask> tasks)
         {
             DateTime now = DateTime.Now;
             DateTime tomorrow = DateTime.Today.AddDays(1);

@@ -1,4 +1,5 @@
-﻿using Diary.Models;
+﻿using Diary.Commands;
+using Diary.Models;
 using Diary.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,13 @@ namespace DiaryWPF.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        
+        private RelayCommand showDialog;
+
+        public RelayCommand ShowDialog => showDialog ?? (showDialog = new RelayCommand(ExecuteShowDialog));
+
+        private void ExecuteShowDialog(object obj)
+        {
+            
+        }
     }
 }

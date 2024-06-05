@@ -32,8 +32,8 @@ namespace Diary.ViewModels
             UserManager.CurrentUser = tempUser;
             UserManager.CurrentUser.Tasks.Add(new DiaryTask(
                         $"Task_1",
-                        new DateTime(2024, 6, 5),
-                        new DateTime(2024, 6, 5, 17, 0, 0),
+                        new DateTime(2024, 6, 6),
+                        new DateTime(2024, 6, 6, 0, 0, 0),
                         new TimeSpan(1, 0, 0),
                         "вул. Шевченка",
                         "",

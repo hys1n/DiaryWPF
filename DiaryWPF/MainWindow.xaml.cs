@@ -33,5 +33,10 @@ namespace Diary
         {
             DataContext = new CalendarViewModel();
         }
+
+        private void btnInbox_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new InboxViewModel();
+        }
     }
 }
