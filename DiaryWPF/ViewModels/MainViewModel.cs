@@ -11,8 +11,6 @@ namespace DiaryWPF.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public ObservableCollection<User> Users { get; set; }
-
-
+        
     }
 }

@@ -16,6 +16,12 @@ namespace Diary.Models
             return users;
         }
 
+        public static ObservableCollection<User> Users
+        {
+            set { users = value; }
+        }
+
+
         public static void AddUser(User user)
         {
             users.Add(user);

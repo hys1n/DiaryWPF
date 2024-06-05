@@ -5,7 +5,7 @@ using DiaryWPF.Models;
 namespace Diary.Models
 {
     /// <summary>
-    /// A class which stores all the information about 
+    /// Class which stores all the information about 
     /// the user.
     /// </summary>
     public class User
@@ -20,6 +20,9 @@ namespace Diary.Models
 
         public ObservableCollection<DiaryTask> Tasks { get; set; }
 
-        public User() { }
+        public User() 
+        {
+            Tasks = new ObservableCollection<DiaryTask>();
+        }
     }
 }

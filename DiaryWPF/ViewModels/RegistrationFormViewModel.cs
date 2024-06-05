@@ -1,6 +1,7 @@
 ﻿using Diary.Commands;
 using Diary.Forms;
 using Diary.Models;
+using DiaryWPF.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
@@ -26,8 +27,19 @@ namespace Diary.ViewModels
 
         public RegistrationFormViewModel()
         {
-            UserManager.AddUser(new User { UserName = "user", Email = "user@gmail.com", Password = "1234" });
-            
+            User tempUser = new User { UserName = "user", Email = "user@gmail.com", Password = "1234" };
+            UserManager.AddUser(tempUser);
+            UserManager.CurrentUser = tempUser;
+            UserManager.CurrentUser.Tasks.Add(new DiaryTask(
+                        $"Task_1",
+                        new DateTime(2024, 6, 5),
+                        new DateTime(2024, 6, 5, 17, 0, 0),
+                        new TimeSpan(1, 0, 0),
+                        "вул. Шевченка",
+                        "",
+                        false
+                    ));
+
             RegisterUserCommand = new RegisterUserCommand(this);
             RegisterUserCommand.UserRegisteredSuccessfully += OnUserRegisteredSuccessfully;
             LogInUserCommand = new LogInUserCommand(this);
@@ -116,6 +128,11 @@ namespace Diary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Checks if the email is valid.
+        /// </summary>
+        /// <param name="email">Email to check.</param>
+        /// <returns>True if the email is valid; otherwise false.</returns>
         private bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
@@ -125,6 +142,9 @@ namespace Diary.ViewModels
             return Regex.IsMatch(email, pattern);
         }
 
+        /// <summary>
+        /// Opens the main window after user registered succesfully.
+        /// </summary>
         private void OnUserRegisteredSuccessfully(object? sender, EventArgs e)
         {
             Application.Current.Dispatcher.Invoke(() =>
@@ -138,6 +158,9 @@ namespace Diary.ViewModels
             });
         }
 
+        /// <summary>
+        /// Opens the main window after user logged in succesfully.
+        /// </summary>
         private void OnUserLoggedInSuccessfully(object? sender, EventArgs e)
         {
             Application.Current.Dispatcher.Invoke(() =>

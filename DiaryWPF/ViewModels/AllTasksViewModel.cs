@@ -1,16 +1,16 @@
-﻿using Diary.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Diary.Models;
+using Diary.ViewModels;
+using DiaryWPF.Models;
+using System.Collections.ObjectModel;
+
 namespace DiaryWPF.ViewModels
 {
     public class AllTasksViewModel : ViewModelBase
     {
-        public AllTasksViewModel()
-        {
-            
-        }
+        private readonly ObservableCollection<DiaryTask> userTasks = UserManager.CurrentUser.Tasks;
+
+        public ObservableCollection<DiaryTask> UserTasks { get { return userTasks; } }
+
+
     }
 }

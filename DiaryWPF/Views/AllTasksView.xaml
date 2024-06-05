@@ -13,7 +13,7 @@
                     <TextBlock Text="All tasks" VerticalAlignment="Center"/>
                 </StackPanel>
             </Expander.Header>
-            <ListBox ItemsSource="{Binding Tasks}">
+            <ListBox ItemsSource="{Binding UserTasks}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>

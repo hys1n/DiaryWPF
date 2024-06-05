@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using DiaryWPF.ViewModels;
+using System.Windows.Controls;
 
 namespace DiaryWPF.Views
 {
@@ -10,6 +11,8 @@ namespace DiaryWPF.Views
         public CalendarView()
         {
             InitializeComponent();
+            CalendarViewModel viewModel = new CalendarViewModel();
+            DataContext = viewModel;
         }
     }
 }

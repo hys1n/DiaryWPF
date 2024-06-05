@@ -30,16 +30,17 @@ namespace Diary.ViewModels
             File.WriteAllText("users.json", json);
         }
 
-        protected void LoadUsersFromJson(ObservableCollection<User> users)
+        protected void LoadUsersFromJson()
         {
             if (File.Exists("users.json"))
             {
                 string json = File.ReadAllText("users.json");
-                users = JsonSerializer.Deserialize<ObservableCollection<User>>(json) ?? new ObservableCollection<User>();
+                UserManager.Users = JsonSerializer.Deserialize<ObservableCollection<User>>(json) 
+                    ?? new ObservableCollection<User>();
             }
             else
             {
-                users = new ObservableCollection<User>();
+                UserManager.Users = new ObservableCollection<User>();
             }
         }
     }
