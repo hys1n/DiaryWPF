@@ -165,8 +165,19 @@ namespace Diary.ViewModels
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
+                MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+                if (mainWindow != null)
+                {
+                    // Если главное окно уже открыто, активируем его
+                    mainWindow.Activate();
+                }
+                else
+                {
+                    // Создаем новый экземпляр главного окна
+                    MainWindow newMainWindow = new MainWindow();
+                    newMainWindow.Show();
+                }
 
                 Application.Current.Windows
                     .OfType<RegistrationForm>()

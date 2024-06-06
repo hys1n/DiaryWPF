@@ -19,32 +19,33 @@ namespace Diary.Commands
 
         public override void Execute(object? parameter)
         {
+            bool userFound = false;
+
             if (UserManager.GetUsers().Count <= 0)
             {
                 MessageBox.Show("The user doesn't exist", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else if (UserManager.GetUsers().Count > 0)
+            else
             {
                 foreach (User user in UserManager.GetUsers())
                 {
-                    if (user.Email == viewModel.Email 
-                        && user.UserName == viewModel.UserName 
+                    if (user.Email == viewModel.Email
+                        && user.UserName == viewModel.UserName
                         && user.Password == viewModel.Password)
                     {
                         UserManager.CurrentUser = user;
-                        //UpdateViewData.LoadData();
                         MessageBox.Show("You've logged in successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                         UserLoggedInSuccessfully?.Invoke(this, EventArgs.Empty);
-                    }
-                    else
-                    {
-                        MessageBox.Show("The user doesn't exist", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        userFound = true; 
+                        break;
                     }
                 }
-            }
-            else
-            {
-                MessageBox.Show("The user doesn't exist", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                if (!userFound)
+                {
+                    MessageBox.Show("The user doesn't exist", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }

@@ -16,11 +16,11 @@ namespace DiaryWPF.ViewModels
     /// </summary>
     public class CalendarViewModel : ViewModelBase
     {
-        private DateTime chosenDate = DateTime.Now;
+        private static DateTime chosenDate = DateTime.Now;
 
-        private ObservableCollection<Day> days;
+        private static ObservableCollection<Day> days;
 
-        public DateTime ChosenDate
+        public static DateTime ChosenDate
         {
             get { return chosenDate; }
             set
@@ -28,19 +28,17 @@ namespace DiaryWPF.ViewModels
                 if (chosenDate != value)
                 {
                     chosenDate = value;
-                    OnPropertyChanged();
                     LoadDays();
                 }
             }
         }
 
-        public ObservableCollection<Day> Days
+        public static ObservableCollection<Day> Days
         {
             get { return days; }
             set
             {
                 days = value;
-                OnPropertyChanged();
             }
         }
 
@@ -53,7 +51,7 @@ namespace DiaryWPF.ViewModels
         /// <summary>
         /// Method for showing dates in a calendar.
         /// </summary>
-        private void LoadDays()
+        public static void LoadDays()
         {
             Days.Clear();
             var newDays = Day.LoadDays(ChosenDate, UserManager.CurrentUser.Tasks);

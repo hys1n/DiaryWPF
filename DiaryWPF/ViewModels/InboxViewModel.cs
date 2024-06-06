@@ -13,6 +13,12 @@ namespace DiaryWPF.ViewModels
     {
         private readonly ObservableCollection<DiaryTask> userTasks = UserManager.CurrentUser.Tasks;
 
-        public ObservableCollection<DiaryTask> FilteredTasks { get { return DiaryTask.FilterTasks(userTasks); } }
+        public ObservableCollection<DiaryTask> FilteredTasks
+        {
+            get 
+            { 
+                return DiaryTask.FilterTasks(userTasks); 
+            }
+        }
     }
 }

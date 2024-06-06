@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diary.Forms" xmlns:UserControls="clr-namespace:Diary.Views.UserControls"
         mc:Ignorable="d"
-        Title="RegistrationForm" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Registration" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Height="332" Width="300">
         <Grid>
             <Grid.RowDefinitions>

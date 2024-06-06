@@ -47,9 +47,6 @@ namespace Diary.Commands
                 MessageBox.Show("User registered successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 UserRegisteredSuccessfully?.Invoke(this, EventArgs.Empty);
             }
-            //UpdateViewData.LoadData();
-
-            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiaryWPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,23 @@ namespace DiaryWPF.Forms
         public AddTaskForm()
         {
             InitializeComponent();
+            AddTaskFormViewModel viewModel = new AddTaskFormViewModel();
+            DataContext = viewModel;
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(
+                "Are you sure you want to exit?",
+                "Confirmation",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                DialogResult = false;
+            }
         }
     }
 }

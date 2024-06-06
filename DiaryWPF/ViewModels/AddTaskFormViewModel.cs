@@ -1,9 +1,11 @@
 ﻿using Diary;
 using Diary.Models;
 using Diary.ViewModels;
+using DiaryWPF.Commands;
 using DiaryWPF.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -27,13 +29,16 @@ namespace DiaryWPF.ViewModels
 
         private string taskDescription;
 
+        public AddTaskCommand AddTaskCommand { get; set; }
+
         public string Error => throw new NotImplementedException();
 
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
 
         public AddTaskFormViewModel()
         {
-            
+            AddTaskCommand = new AddTaskCommand(this);
+            AddTaskCommand.TaskAddedSuccessfully += OnAddedTaskSuccessfully;
         }
 
         public string TaskTitle
@@ -117,30 +122,14 @@ namespace DiaryWPF.ViewModels
             return regex.IsMatch(streetName);
         }
 
-        private void AddTask()
+        public void OnAddedTaskSuccessfully(object? sender, EventArgs e)
         {
-            if (ErrorCollection.Count > 0 && ErrorCollection.Any(e => e.Value != null))
+            if (Application.Current.Windows.OfType<Window>()
+                .SingleOrDefault(w => w.DataContext == this) is Window window)
             {
-                MessageBox.Show("Not all input fields are filled or input text is invalid", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
-            {
-                DiaryTask newTask = new DiaryTask()
-                {
-                    Title = TaskTitle,
-                    Date = TaskDateTime,
-                    Time = TaskTime,
-                    Duration = TaskDuration,
-                    Location = TaskLocation,
-                    Description = TaskDescription,
-                    IsCompleted = false
-                };
-
-                UserManager.CurrentUser.Tasks.Add(newTask);
-
-                MessageBox.Show("Task added successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                window.DialogResult = true;
+                window.Close();
             }
         }
-
     }
 }

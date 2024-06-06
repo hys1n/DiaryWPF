@@ -9,6 +9,7 @@
         xmlns:local="clr-namespace:Diary"
         mc:Ignorable="d"
         Title="Diary" Height="436" Width="810" MinWidth="810" MinHeight="450" WindowStartupLocation="CenterScreen" >
+    
     <Window.Resources>
         <Style x:Key="GridCellBorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="Black"/>
@@ -49,7 +50,7 @@
         <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="10,16,0,0">
             <fa:ImageAwesome x:Name="fontIcon" Icon="ArrowCircleLeft" Height="26" Width="31"/>
         </StackPanel>
-        <Button x:Name="btnLogOut" Content="Log out" Width="77" Height="37" VerticalAlignment="Top" Margin="42,11,42,0"/>
+        <Button x:Name="btnLogOut" Content="Log out" Width="77" Height="37" VerticalAlignment="Top" Margin="42,11,42,0" Click="btnLogOut_Click"/>
         <Grid VerticalAlignment="Top"  Margin="21,53,0,0" HorizontalAlignment="Left" Height="Auto" Width="140">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -59,7 +60,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Orientation="Horizontal">
                 <fa:ImageAwesome x:Name="Plus" Icon="Plus" Height="26" Width="31"/>
-                <Button  x:Name="btnAddTask" Command="{Binding ShowDialog}" Content="Add task" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Button  x:Name="btnAddTask" Content="Add task" Width="77" Height="36"  Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnAddTask_Click"/>
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 8, 0, 0">

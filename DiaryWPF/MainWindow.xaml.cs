@@ -1,4 +1,8 @@
-﻿using DiaryWPF.ViewModels;
+﻿using Diary.Forms;
+using Diary.Models;
+using DiaryWPF.Forms;
+using DiaryWPF.Models;
+using DiaryWPF.ViewModels;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +21,8 @@ namespace Diary
     /// </summary>
     public partial class MainWindow : Window
     {
+        private object previousDataContext;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -38,5 +44,42 @@ namespace Diary
         {
             DataContext = new InboxViewModel();
         }
+
+        private void btnAddTask_Click(object sender, RoutedEventArgs e)
+        {
+            previousDataContext = DataContext;
+
+            AddTaskForm addTaskForm = new AddTaskForm
+            {
+                DataContext = new AddTaskFormViewModel()
+            };
+
+            if (addTaskForm.ShowDialog() == true)
+            {
+                CalendarViewModel.LoadDays();
+            }
+
+            DataContext = previousDataContext;
+        }
+
+        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(
+                "Are you sure you want to log out?",
+                "Log Out Confirmation",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if ( result == MessageBoxResult.Yes )
+            {
+                RegistrationForm registrationForm = new RegistrationForm();
+                registrationForm.Show();
+
+                this.Close();
+            }
+        }
+
+
     }
 }
