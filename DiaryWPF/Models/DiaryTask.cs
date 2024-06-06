@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diary.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -94,6 +95,11 @@ namespace DiaryWPF.Models
             taskToChange.Duration = originalTask.Duration;
             taskToChange.Description = originalTask.Description;
             taskToChange.Location = originalTask.Location;
+        }
+
+        public static void RemoveTask(DiaryTask taskToDelete)
+        {
+            UserManager.CurrentUser.Tasks.Remove(taskToDelete);
         }
     }
 }

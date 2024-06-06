@@ -87,7 +87,6 @@
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
-                            <Setter Property="Cursor" Value="Hand"/>
                         </Style>
                     </ListBox.ItemContainerStyle>
                 </ListBox>
@@ -113,12 +112,11 @@
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    <!--<ListBox.ItemContainerStyle>
+                    <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
-                            <EventSetter Event="MouseLeftButtonUp" />
-                            <Setter Property="Cursor" Value="Hand"/>
+                            <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
                         </Style>
-                    </ListBox.ItemContainerStyle>-->
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
             </Border>
             <Border Grid.Column="2" Grid.Row="1" Style="{StaticResource GridCellBorderStyle}" BorderThickness="1, 0, 0, 1">
@@ -141,12 +139,11 @@
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    <!--<ListBox.ItemContainerStyle>
+                    <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
-                            <EventSetter Event="MouseLeftButtonUp"/>
-                            <Setter Property="Cursor" Value="Hand"/>
+                            <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
                         </Style>
-                    </ListBox.ItemContainerStyle>-->
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
             </Border>
             <Border Grid.Column="3" Grid.Row="1" Style="{StaticResource GridCellBorderStyle}" BorderThickness="1, 0, 0, 1">
@@ -169,12 +166,11 @@
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    <!--<ListBox.ItemContainerStyle>
+                    <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
-                            <EventSetter Event="MouseLeftButtonUp" />
-                            <Setter Property="Cursor" Value="Hand"/>
+                            <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
                         </Style>
-                    </ListBox.ItemContainerStyle>-->
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
             </Border>
             <Border Grid.Column="4" Grid.Row="1" Style="{StaticResource GridCellBorderStyle}" BorderThickness="1, 0, 0, 1">
@@ -197,12 +193,11 @@
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    <!--<ListBox.ItemContainerStyle>
+                    <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
-                            <EventSetter Event="MouseLeftButtonUp" />
-                            <Setter Property="Cursor" Value="Hand"/>
+                            <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
                         </Style>
-                    </ListBox.ItemContainerStyle>-->
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
             </Border>
             <Border Grid.Column="5" Grid.Row="1" Style="{StaticResource GridCellBorderStyle}" BorderThickness="1, 0, 0, 1">
@@ -225,12 +220,11 @@
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    <!--<ListBox.ItemContainerStyle>
+                    <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
-                            <EventSetter Event="MouseLeftButtonUp"/>
-                            <Setter Property="Cursor" Value="Hand"/>
+                            <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
                         </Style>
-                    </ListBox.ItemContainerStyle>-->
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
             </Border>
             <Border Grid.Column="6" Style="{StaticResource GridCellBorderStyle}" BorderThickness="1, 0, 1, 1">
@@ -253,12 +247,11 @@
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    <!--<ListBox.ItemContainerStyle>
+                    <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
-                            <EventSetter Event="MouseLeftButtonUp" />
-                            <Setter Property="Cursor" Value="Hand"/>
+                            <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
                         </Style>
-                    </ListBox.ItemContainerStyle>-->
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
             </Border>
 
