@@ -1,10 +1,5 @@
 ﻿using Diary.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiaryWPF.Models
 {
@@ -86,6 +81,12 @@ namespace DiaryWPF.Models
             };
         }
 
+        /// <summary>
+        /// Utility method which restores a task to a condition
+        /// before changes.
+        /// </summary>
+        /// <param name="taskToChange">Task to be restored.</param>
+        /// <param name="originalTask">An original task.</param>
         public static void RestoreTask(DiaryTask taskToChange, DiaryTask originalTask)
         {
             taskToChange.Date = originalTask.Date;
@@ -97,6 +98,10 @@ namespace DiaryWPF.Models
             taskToChange.Location = originalTask.Location;
         }
 
+        /// <summary>
+        /// Method which deletes a task.
+        /// </summary>
+        /// <param name="taskToDelete">Task to be deleted.</param>
         public static void RemoveTask(DiaryTask taskToDelete)
         {
             UserManager.CurrentUser.Tasks.Remove(taskToDelete);

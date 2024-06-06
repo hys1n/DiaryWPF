@@ -1,6 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using Diary.Models;
-using DiaryWPF.Models;
+﻿using DiaryWPF.Models;
+using System.Collections.ObjectModel;
 
 namespace Diary.Models
 {

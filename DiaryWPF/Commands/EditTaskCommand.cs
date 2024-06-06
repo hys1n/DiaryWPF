@@ -1,15 +1,12 @@
 ﻿using Diary.Commands;
-using DiaryWPF.Forms;
 using DiaryWPF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DiaryWPF.Commands
 {
+    /// <summary>
+    /// Command which edits an existing task.
+    /// </summary>
     public class EditTaskCommand : CommandBase
     {
         private readonly EditTaskViewModel viewModel;
@@ -23,10 +20,13 @@ namespace DiaryWPF.Commands
 
         public override void Execute(object parameter)
         {
-            if (string.IsNullOrWhiteSpace(viewModel.Task.Title) || viewModel.Task.Title.Length > 32
-                || string.IsNullOrWhiteSpace(viewModel.Task.Location) /*|| AddTaskForm.IsValidStreetName(viewModel.Task.Location)*/)
+            if (string.IsNullOrWhiteSpace(viewModel.Task.Title) 
+                || viewModel.Task.Title.Length > 32
+                || string.IsNullOrWhiteSpace(viewModel.Task.Location) 
+                || AddTaskFormViewModel.IsValidStreetName(viewModel.Task.Location))
             {
-                MessageBox.Show("Not all input fields are filled or input text is invalid", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Not all input fields are filled or input text is invalid", 
+                    "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {

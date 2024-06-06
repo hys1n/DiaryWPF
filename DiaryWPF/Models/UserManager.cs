@@ -21,7 +21,11 @@ namespace Diary.Models
             set { users = value; }
         }
 
-
+        /// <summary>
+        /// Mehtod which add a user to a collection of
+        /// all users.
+        /// </summary>
+        /// <param name="user">User to be added.</param>
         public static void AddUser(User user)
         {
             users.Add(user);

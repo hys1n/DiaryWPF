@@ -1,18 +1,13 @@
 ﻿using Diary.Models;
 using Diary.ViewModels;
 using DiaryWPF.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiaryWPF.ViewModels
 {
     /// <summary>
     /// ViewModel which is responsible for showing and getting data
-    /// from CalendarView.
+    /// in CalendarView.
     /// </summary>
     public class CalendarViewModel : ViewModelBase
     {
@@ -49,7 +44,7 @@ namespace DiaryWPF.ViewModels
         }
 
         /// <summary>
-        /// Method for showing dates in a calendar.
+        /// Method for showing dates and tasks in a calendar.
         /// </summary>
         public static void LoadDays()
         {

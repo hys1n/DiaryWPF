@@ -1,17 +1,13 @@
-﻿using Diary.Commands;
-using DiaryWPF.Commands;
+﻿using DiaryWPF.Commands;
 using DiaryWPF.Forms;
 using DiaryWPF.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace DiaryWPF.ViewModels
 {
+    /// <summary>
+    /// View model for EditTaskView.
+    /// </summary>
     public class EditTaskViewModel
     {
         public DiaryTask OriginalTask { get; set; }
@@ -53,6 +49,9 @@ namespace DiaryWPF.ViewModels
             CloseModal();
         }
 
+        /// <summary>
+        /// Closes the current modal window.
+        /// </summary>
         private void CloseModal()
         {
             if (Application.Current.Windows.OfType<EditTaskView>()

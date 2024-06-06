@@ -1,20 +1,14 @@
-﻿using Diary;
-using Diary.Models;
-using Diary.ViewModels;
+﻿using Diary.ViewModels;
 using DiaryWPF.Commands;
-using DiaryWPF.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DiaryWPF.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the AddTaskForm.
+    /// </summary>
     public class AddTaskFormViewModel : ViewModelBase, IDataErrorInfo
     {
         private string taskTitle;
@@ -77,6 +71,11 @@ namespace DiaryWPF.ViewModels
             set { taskDescription = value.Trim(); }
         }
 
+        /// <summary>
+        /// Gets the error message for the property with the given name.
+        /// </summary>
+        /// <param name="columnName">The name of the property.</param>
+        /// <returns>The error message for the property.</returns>
         public string this[string columnName]
         {
             get
@@ -109,6 +108,11 @@ namespace DiaryWPF.ViewModels
             }
         }
 
+        /// <summary>
+        /// Validates the street name format.
+        /// </summary>
+        /// <param name="streetName">The street name to validate</param>
+        /// <returns>True if the street is valid; otherwise, false</returns>
         public static bool IsValidStreetName(string streetName)
         {
             if (string.IsNullOrWhiteSpace(streetName))
@@ -122,6 +126,9 @@ namespace DiaryWPF.ViewModels
             return regex.IsMatch(streetName);
         }
 
+        /// <summary>
+        /// Handles the event when a task is successfully added.
+        /// </summary>
         public void OnAddedTaskSuccessfully(object? sender, EventArgs e)
         {
             if (Application.Current.Windows.OfType<Window>()

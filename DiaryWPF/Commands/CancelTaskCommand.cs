@@ -1,15 +1,14 @@
 ﻿using Diary.Commands;
 using DiaryWPF.Models;
 using DiaryWPF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DiaryWPF.Commands
 {
+    /// <summary>
+    /// Command which cancels any changes done 
+    /// to a taks.
+    /// </summary>
     public class CancelTaskCommand : CommandBase
     {
         private readonly EditTaskViewModel viewModel;

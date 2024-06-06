@@ -4,6 +4,9 @@ using System.Windows;
 
 namespace Diary.Commands
 {
+    /// <summary>
+    /// Command which is used when user logins in.
+    /// </summary>
     public class LogInUserCommand : CommandBase
     {
         private readonly RegistrationFormViewModel viewModel;

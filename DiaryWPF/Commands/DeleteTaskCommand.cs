@@ -1,16 +1,13 @@
-﻿using Diary;
-using Diary.Commands;
+﻿using Diary.Commands;
 using DiaryWPF.Models;
 using DiaryWPF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DiaryWPF.Commands
 {
+    /// <summary>
+    /// Command which deletes a task.
+    /// </summary>
     public class DeleteTaskCommand : CommandBase
     {
         private readonly EditTaskViewModel viewModel;

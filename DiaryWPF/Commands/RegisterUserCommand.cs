@@ -7,8 +7,7 @@ using System.Windows;
 namespace Diary.Commands
 {
     /// <summary>
-    /// Command which registers a user in case there are
-    /// no validation errors.
+    /// Command which registers a user.
     /// </summary>
     public class RegisterUserCommand : CommandBase
     {

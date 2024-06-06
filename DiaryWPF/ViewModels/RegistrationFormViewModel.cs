@@ -2,13 +2,15 @@
 using Diary.Forms;
 using Diary.Models;
 using DiaryWPF.Models;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace Diary.ViewModels
 {
+    /// <summary>
+    /// View model for RegistrationForm.
+    /// </summary>
     public class RegistrationFormViewModel : ViewModelBase, IDataErrorInfo
     {
         public RegisterUserCommand RegisterUserCommand { get; set; }

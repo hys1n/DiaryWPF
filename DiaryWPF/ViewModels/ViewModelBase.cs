@@ -20,6 +20,10 @@ namespace Diary.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// Stores users' data in json file.
+        /// </summary>
+        /// <param name="users">Users to be stored</param>
         protected void SaveUsersToJson(ObservableCollection<User> users)
         {
             var options = new JsonSerializerOptions
@@ -30,6 +34,9 @@ namespace Diary.ViewModels
             File.WriteAllText("users.json", json);
         }
 
+        /// <summary>
+        /// Upload the users' data from json file.
+        /// </summary>
         protected void LoadUsersFromJson()
         {
             if (File.Exists("users.json"))
