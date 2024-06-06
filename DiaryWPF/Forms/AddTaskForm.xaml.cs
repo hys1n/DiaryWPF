@@ -8,6 +8,8 @@ namespace DiaryWPF.Forms
     /// </summary>
     public partial class AddTaskForm : Window
     {
+        private bool isProgrammaticClose = false;
+
         public AddTaskForm()
         {
             InitializeComponent();
@@ -26,7 +28,26 @@ namespace DiaryWPF.Forms
 
             if (result == MessageBoxResult.Yes)
             {
-                DialogResult = false;
+                isProgrammaticClose = true;
+                Close();
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!isProgrammaticClose)
+            {
+                MessageBoxResult result = MessageBox.Show(
+                "Are you sure you want to exit?",
+                "Confirmation",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+                if (result == MessageBoxResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }

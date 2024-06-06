@@ -15,6 +15,8 @@ namespace DiaryWPF.Commands
 
         public event EventHandler? TaskCancelledSuccessfully;
 
+        public bool? WasCancelled { get; private set; }
+
         public CancelTaskCommand(EditTaskViewModel viewModel)
         {
             this.viewModel = viewModel;
@@ -23,18 +25,22 @@ namespace DiaryWPF.Commands
         public override void Execute(object parameter)
         {
             MessageBoxResult result = MessageBox.Show(
-                    "Are you sure you want to undo the changes?",
-                    "Confirmation",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question
-            );
+                "Are you sure you want to undo the changes?",
+                "Confirmation",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+        );
             if (result == MessageBoxResult.Yes)
             {
                 DiaryTask.RestoreTask(viewModel.Task, viewModel.OriginalTask);
                 CalendarViewModel.LoadDays();
                 TaskCancelledSuccessfully?.Invoke(this, EventArgs.Empty);
+                WasCancelled = true;
+            }
+            else
+            {
+                WasCancelled = false;
             }
         }
-
     }
 }

@@ -41,8 +41,8 @@ namespace DiaryWPF.Commands
 
                 UserManager.CurrentUser.Tasks.Add(newTask);
 
-                MessageBox.Show("Task added successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 TaskAddedSuccessfully?.Invoke(this, EventArgs.Empty);
+                MessageBox.Show("Task added successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }

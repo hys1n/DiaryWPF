@@ -10,9 +10,9 @@ namespace DiaryWPF.ViewModels
     /// </summary>
     public class InboxViewModel
     {
-        private readonly ObservableCollection<DiaryTask> userTasks = UserManager.CurrentUser.Tasks;
+        private static readonly ObservableCollection<DiaryTask> userTasks = UserManager.CurrentUser.Tasks;
 
-        public ObservableCollection<DiaryTask> FilteredTasks
+        public static ObservableCollection<DiaryTask> FilteredTasks
         {
             get 
             { 

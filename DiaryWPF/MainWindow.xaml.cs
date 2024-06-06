@@ -1,4 +1,6 @@
 ﻿using Diary.Forms;
+using Diary.Models;
+using Diary.ViewModels;
 using DiaryWPF.Forms;
 using DiaryWPF.ViewModels;
 using System.Windows;
@@ -62,13 +64,18 @@ namespace Diary
 
             if ( result == MessageBoxResult.Yes )
             {
+                ViewModelBase.SaveUsersToJson(UserManager.GetUsers());
+
                 RegistrationForm registrationForm = new RegistrationForm();
                 registrationForm.Show();
 
-                this.Close();
+                Close();
             }
         }
 
-
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ViewModelBase.SaveUsersToJson(UserManager.GetUsers());
+        }
     }
 }

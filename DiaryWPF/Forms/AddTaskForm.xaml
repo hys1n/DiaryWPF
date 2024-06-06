@@ -7,7 +7,7 @@
         xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         xmlns:local="clr-namespace:DiaryWPF.Forms"
         mc:Ignorable="d"
-        Title="Add Task" Height="421" Width="384" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Add Task" Height="421" Width="384" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Window.Resources>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>

@@ -24,7 +24,7 @@ namespace Diary.ViewModels
         /// Stores users' data in json file.
         /// </summary>
         /// <param name="users">Users to be stored</param>
-        protected void SaveUsersToJson(ObservableCollection<User> users)
+        public static void SaveUsersToJson(ObservableCollection<User> users)
         {
             var options = new JsonSerializerOptions
             {
@@ -37,7 +37,7 @@ namespace Diary.ViewModels
         /// <summary>
         /// Upload the users' data from json file.
         /// </summary>
-        protected void LoadUsersFromJson()
+        public static void LoadUsersFromJson()
         {
             if (File.Exists("users.json"))
             {

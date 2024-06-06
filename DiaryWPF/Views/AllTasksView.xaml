@@ -32,12 +32,11 @@
                         </DataTemplate.Triggers>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-                <!--<ListBox.ItemContainerStyle>
+                <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
-                        <EventSetter Event="MouseLeftButtonUp"/>
-                        <Setter Property="Cursor" Value="Hand"/>
+                        <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
                     </Style>
-                </ListBox.ItemContainerStyle>-->
+                </ListBox.ItemContainerStyle>
             </ListBox>
         </Expander>
     </Grid>

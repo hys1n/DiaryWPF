@@ -11,6 +11,7 @@ namespace Diary.Forms
         public RegistrationForm()
         {
             InitializeComponent();
+            ViewModelBase.LoadUsersFromJson();
             RegistrationFormViewModel registrationFormViewModel = new RegistrationFormViewModel();
             DataContext = registrationFormViewModel;
         }
