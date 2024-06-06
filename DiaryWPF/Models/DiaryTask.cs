@@ -84,5 +84,16 @@ namespace DiaryWPF.Models
                 IsCompleted = IsCompleted,
             };
         }
+
+        public static void RestoreTask(DiaryTask taskToChange, DiaryTask originalTask)
+        {
+            taskToChange.Date = originalTask.Date;
+            taskToChange.Title = originalTask.Title;
+            taskToChange.IsCompleted = originalTask.IsCompleted;
+            taskToChange.Time = originalTask.Time;
+            taskToChange.Duration = originalTask.Duration;
+            taskToChange.Description = originalTask.Description;
+            taskToChange.Location = originalTask.Location;
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DiaryWPF.Models;
+using DiaryWPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,11 @@ namespace DiaryWPF.Forms
     /// </summary>
     public partial class EditTaskView : Window
     {
-        public EditTaskView()
+        public EditTaskView(DiaryTask clickedTask)
         {
             InitializeComponent();
+            EditTaskViewModel viewModel = new EditTaskViewModel(clickedTask);
+            DataContext = viewModel;
         }
     }
 }

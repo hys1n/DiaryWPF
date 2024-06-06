@@ -16,8 +16,6 @@ namespace DiaryWPF.Commands
     {
         private readonly AddTaskFormViewModel viewModel;
 
-        public event EventHandler? CanExecuteChanged;
-
         public event EventHandler? TaskAddedSuccessfully;
 
         public AddTaskCommand(AddTaskFormViewModel viewModel)

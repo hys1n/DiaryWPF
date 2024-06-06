@@ -14,8 +14,6 @@ namespace Diary.Commands
     {
         private readonly RegistrationFormViewModel viewModel;
 
-        public event EventHandler? CanExecuteChanged;
-
         public event EventHandler? UserRegisteredSuccessfully;
 
         public RegisterUserCommand(RegistrationFormViewModel viewModel)

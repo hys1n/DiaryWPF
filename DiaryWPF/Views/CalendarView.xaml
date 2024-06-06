@@ -65,7 +65,7 @@
             <Border Grid.Column="6" Style="{StaticResource GridCellDayBlockBorderStyle}"  BorderThickness="1"/>
 
             <Border Grid.Column="0" Grid.Row="1" Style="{StaticResource GridCellBorderStyle}" BorderThickness="1, 0, 0, 1">
-                <ListBox ItemsSource="{Binding Days[0].Tasks}">
+                <ListBox ItemsSource="{Binding Days[0].Tasks}" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -84,12 +84,12 @@
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    <!--<ListBox.ItemContainerStyle>
+                    <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
-                            <EventSetter Event="MouseLeftButtonUp"/>
+                            <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
                             <Setter Property="Cursor" Value="Hand"/>
                         </Style>
-                    </ListBox.ItemContainerStyle>-->
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
             </Border>
 
