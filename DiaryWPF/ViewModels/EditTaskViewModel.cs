@@ -22,6 +22,8 @@ namespace DiaryWPF.ViewModels
 
         public CancelTaskCommand CancelTaskCommand { get; set; }
 
+        public DeleteTaskCommand DeleteTaskCommand { get; set; }
+
 
         public EditTaskViewModel(DiaryTask clickedTask)
         {
@@ -32,20 +34,26 @@ namespace DiaryWPF.ViewModels
             EditTaskCommand.TaskEditedSuccessfully += OnTaskEditedSuccessfully;
             CancelTaskCommand = new CancelTaskCommand(this);
             CancelTaskCommand.TaskCancelledSuccessfully += OnTaskCancelledSuccessfully;
+            DeleteTaskCommand = new DeleteTaskCommand(this);
+            DeleteTaskCommand.TaskDeletedSuccessfully += OnTaskDeletedSuccessfully;
         }
 
         public void OnTaskEditedSuccessfully(object? sender, EventArgs e)
         {
-            if (Application.Current.Windows.OfType<EditTaskView>()
-                .SingleOrDefault(w => w.DataContext == this) is Window window)
-            {
-                window.DialogResult = true;
-                CalendarViewModel.LoadDays();
-                window.Close();
-            }
+            CloseModal();
         }
 
         public void OnTaskCancelledSuccessfully(object? sender, EventArgs e)
+        {
+            CloseModal();
+        }
+
+        private void OnTaskDeletedSuccessfully(object sender, EventArgs e)
+        {
+            CloseModal();
+        }
+
+        private void CloseModal()
         {
             if (Application.Current.Windows.OfType<EditTaskView>()
                 .SingleOrDefault(w => w.DataContext == this) is Window window)

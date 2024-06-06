@@ -161,12 +161,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <DatePicker SelectedDate="{Binding Task.Date, Mode=TwoWay}" Grid.Row="0" HorizontalAlignment="Left" Margin="25,20,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnDeleteTask" Content="Delete" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,22,25,0"/>
+        <Button x:Name="btnDeleteTask" Command="{Binding DeleteTaskCommand}" Content="Delete" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,22,25,0"/>
 
 
         <TextBox x:Name="TextBoxTitle" Style="{StaticResource TextBoxStyle}" Text="{Binding Task.Title, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ToolTip="{Binding ErrorCollection[TaskTitle]}" Grid.Row="1" Width="275" Height="25" VerticalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="35,42,0,0">
         </TextBox>
-        <CheckBox x:Name="taskCompletedCheckBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" IsChecked="{Binding IsCompleted, Mode=TwoWay}" Margin="0,47,48,0"/>
+        <CheckBox x:Name="taskCompletedCheckBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" IsChecked="{Binding Task.IsCompleted, Mode=TwoWay}" Margin="0,47,48,0"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <Label Content="Time:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Margin="35,17,0,0"/>
@@ -181,7 +181,7 @@
         </StackPanel>
 
         <Label Name="TextBoxLocation" Content="Location:" FontSize="16" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="35,7,0,0"/>
-        <TextBox Name="textBoxLocation" Text="{Binding TaskLocation, Mode=TwoWay}"  Grid.Row="4" Width="163" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="104,8,0,0"/>
+        <TextBox Name="textBoxLocation" Text="{Binding Task.Location, Mode=TwoWay}"  Grid.Row="4" Width="163" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="104,8,0,0"/>
         <TextBox Style="{DynamicResource TextBoxDescriptionPlaceholder}" Text="{Binding Task.Description, Mode=TwoWay}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Padding="5, 5, 0, 0" FontSize="14" x:Name="descriptionTextBox" VerticalContentAlignment="Top" Width="308" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,10,0,0" Grid.Row="5"/>
 
         <Button x:Name="btnEdit" Command="{Binding EditTaskCommand}" FontSize="14" Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="6" Margin="0,0,84,17" Height="27" Width="47"/>
