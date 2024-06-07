@@ -54,13 +54,16 @@ namespace DiaryWPF.ViewModels
         /// </summary>
         private void CloseModal()
         {
+            EditTaskView.IsProgrammaticClose = true;
             if (Application.Current.Windows.OfType<EditTaskView>()
                 .SingleOrDefault(w => w.DataContext == this) is Window window)
             {
                 window.DialogResult = true;
                 CalendarViewModel.LoadDays();
                 window.Close();
+                EditTaskView.IsProgrammaticClose = false;
             }
+            EditTaskView.IsProgrammaticClose = false;
         }
     }
 }

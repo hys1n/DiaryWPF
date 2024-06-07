@@ -10,6 +10,14 @@ namespace DiaryWPF.Forms
     /// </summary>
     public partial class EditTaskView : Window
     {
+        private static bool isProgrammaticClose;
+
+        public static bool IsProgrammaticClose
+        {
+            get { return isProgrammaticClose; }
+            set { isProgrammaticClose = value; }
+        }
+
         private EditTaskViewModel viewModel;
 
         public EditTaskView(DiaryTask clickedTask)
@@ -21,14 +29,17 @@ namespace DiaryWPF.Forms
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (viewModel.CancelTaskCommand.CanExecute(null))
+            if (!isProgrammaticClose)
             {
-                viewModel.CancelTaskCommand.Execute(null);
-                if (viewModel.CancelTaskCommand is CancelTaskCommand cancelCommand)
+                if (viewModel.CancelTaskCommand.CanExecute(null))
                 {
-                    if (cancelCommand.WasCancelled == false)
+                    viewModel.CancelTaskCommand.Execute(null);
+                    if (viewModel.CancelTaskCommand is CancelTaskCommand cancelCommand)
                     {
-                        e.Cancel = true;
+                        if (cancelCommand.WasCancelled == false)
+                        {
+                            e.Cancel = true;
+                        }
                     }
                 }
             }
